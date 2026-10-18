@@ -96,7 +96,8 @@ export function SentenceGamePage({
   const [feedback, setFeedback] = useState<'correct' | null>(null)
   const [round, setRound] = useState(sentenceIndex === null ? 0 : 1)
   const [correctStreak, setCorrectStreak] = useState(0)
-  const [earnedCoins, setEarnedCoins] = useState(10)
+  const [rewardTier, setRewardTier] = useState(10)
+  const [earnedCoins, setEarnedCoins] = useState<number | null>(null)
 
   const finishPageTurn = () => {
     if (nextPageIndex === null) return
@@ -131,10 +132,14 @@ export function SentenceGamePage({
     setBag(remaining)
     setFeedback('correct')
     const nextStreak = correctStreak + 1
-    const reward = 10 + Math.floor(nextStreak / 10) * 5
     setCorrectStreak(nextStreak)
-    setEarnedCoins(reward)
-    addCoins(reward)
+    if (nextStreak % 10 === 0) {
+      setEarnedCoins(rewardTier)
+      addCoins(rewardTier)
+      setRewardTier((value) => value + 5)
+    } else {
+      setEarnedCoins(null)
+    }
   }
 
   return (
@@ -153,9 +158,9 @@ export function SentenceGamePage({
           </p>
           <h1>Welches Wort fehlt?</h1>
           <p className="sentence-intro">
-            Schreibe das fehlende Wort in die Lücke. Für jeden richtigen Satz
-            gibt es 10 Goldmünzen. Nach jeweils 10 richtigen Sätzen in Folge
-            steigt die Belohnung um 5 Goldmünzen.
+            Schreibe das fehlende Wort in die Lücke. Für jeweils 10 richtige
+            Sätze in Folge bekommst du eine Goldbelohnung, die jedes Mal um 5
+            Goldmünzen steigt.
           </p>
           <div className="open-book-scene" aria-live="polite">
             <div
@@ -243,7 +248,15 @@ export function SentenceGamePage({
           {feedback === 'correct' && (
             <div className="sentence-correct-actions">
               <p className="sentence-feedback correct" aria-live="polite">
-                <Coins size={17} /> Richtig! +{earnedCoins} Goldmünzen
+                {earnedCoins !== null ? (
+                  <>
+                    <Coins size={17} /> Belohnung: +{earnedCoins} Goldmünzen
+                  </>
+                ) : (
+                  <>
+                    <Sparkles size={17} /> Richtig!
+                  </>
+                )}
               </p>
             </div>
           )}
