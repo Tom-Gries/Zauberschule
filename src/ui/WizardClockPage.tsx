@@ -184,7 +184,6 @@ export function WizardClockPage({
           )}
           {solved && (
             <div className="wizard-mobile-awake">
-              <span>{reward ? 'Wach! +10 Goldmünzen' : 'Der Zauberer ist wach!'}</span>
               <button className="play-button" onClick={nextRound} type="button">
                 Weiter <ArrowLeft className="next-arrow" size={20} />
               </button>

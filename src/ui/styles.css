@@ -2463,17 +2463,17 @@ button {
   .mobile-answer-analog-clock {
     position: absolute;
     z-index: 1;
-    left: 128px;
-    top: 8px;
-    width: 300px;
-    height: 300px;
+    left: 60px;
+    top: -6px;
+    width: 440px;
+    height: 440px;
     display: grid;
     place-items: center;
     filter: drop-shadow(0 3px 5px #140a08);
   }
   .mobile-answer-analog-clock > .analog-clock-shell {
-    width: 300px;
-    height: 300px;
+    width: 440px;
+    height: 440px;
   }
   .mobile-auto-check {
     display: none;
@@ -2487,23 +2487,23 @@ button {
     right: auto;
     display: grid;
     justify-items: center;
-    gap: 18px;
+    gap: 0;
     min-width: 0;
     max-width: 88%;
-    padding: 22px 28px;
-    border: 2px solid #ffe08b;
-    border-radius: 22px;
-    background: #321a35ef;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: #fff0c4;
-    box-shadow: 0 4px 16px #1a0b20aa;
+    box-shadow: none;
     font: 700 22px Georgia, serif;
     transform: translateX(-50%);
   }
   .wizard-mobile-awake .play-button {
-    min-height: 84px;
-    padding: 18px 34px;
+    min-height: 132px;
+    padding: 28px 54px;
     border-width: 3px;
-    font-size: 30px;
+    font-size: 54px;
   }
 }
 
