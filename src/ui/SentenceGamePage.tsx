@@ -1,5 +1,5 @@
 import { ArrowLeft, Coins, Sparkles } from 'lucide-react'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router'
 import sentenceEntries from '../game/sentences.json'
 import { CoinPill } from './CoinPill'
@@ -26,16 +26,30 @@ function SentenceLine({
   sentence,
   answer,
   ariaLabel,
+  inputValue,
+  onInputChange,
 }: {
   sentence: Sentence
   answer?: string
   ariaLabel?: string
+  inputValue?: string
+  onInputChange?: (value: string) => void
 }) {
   return (
     <p className="broken-sentence" aria-label={ariaLabel}>
       {sentence.before}
       <span className={`word-gap ${answer ? 'is-solved' : ''}`}>
-        {answer}
+        {onInputChange ? (
+          <input
+            className="word-gap-input"
+            aria-label="Fehlendes Wort"
+            value={inputValue ?? ''}
+            onChange={(event) => onInputChange(event.target.value)}
+            autoComplete="off"
+            spellCheck={false}
+            autoFocus
+          />
+        ) : answer}
       </span>
       {sentence.after}
     </p>
@@ -49,24 +63,16 @@ export function SentenceGamePage({
   coins: number
   addCoins: (amount: number) => void
 }) {
-  const [bag, setBag] = useState<number[]>([])
-  const [sentenceIndex, setSentenceIndex] = useState<number | null>(null)
+  const [sentenceIndex, setSentenceIndex] = useState<number | null>(() =>
+    sentences.length ? Math.floor(Math.random() * sentences.length) : null,
+  )
+  const [bag, setBag] = useState<number[]>(() =>
+    sentenceIndex === null ? [] : shuffled(sentences.map((_, index) => index).filter((index) => index !== sentenceIndex)),
+  )
   const [nextPageIndex, setNextPageIndex] = useState<number | null>(null)
   const [answer, setAnswer] = useState('')
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
-  const [round, setRound] = useState(0)
-
-  const nextSentence = useCallback(() => {
-    if (!sentences.length) return
-    const available = bag.filter((index) => index < sentences.length)
-    const nextBag = available.length ? available : shuffled(sentences.map((_, index) => index))
-    const [nextIndex, ...remaining] = nextBag
-    setSentenceIndex(nextIndex)
-    setBag(remaining)
-    setAnswer('')
-    setFeedback(null)
-    setRound((value) => value + 1)
-  }, [bag, sentences])
+  const [round, setRound] = useState(sentenceIndex === null ? 0 : 1)
 
   const finishPageTurn = () => {
     if (nextPageIndex === null) return
@@ -124,28 +130,26 @@ export function SentenceGamePage({
                     </div>
                   </div>
                 ) : current ? (
-                  <SentenceLine sentence={current} ariaLabel={`Satz: ${current.before} fehlendes Wort ${current.after}`} />
+                  <form className="book-answer-form" onSubmit={(event) => { event.preventDefault(); checkAnswer() }}>
+                    <SentenceLine
+                      sentence={current}
+                      ariaLabel={`Satz: ${current.before} fehlendes Wort ${current.after}`}
+                      inputValue={answer}
+                      onInputChange={(value) => { setAnswer(value); setFeedback(null) }}
+                    />
+                  </form>
                 ) : (
-                  <p className="broken-sentence">Bereit für deinen ersten Satz?</p>
+                  <p className="broken-sentence">Noch keine Sätze vorhanden.</p>
                 )}
               </div>
             </div>
           </div>
-          {current && feedback !== 'correct' && (
-            <form className="answer-form" onSubmit={(event) => { event.preventDefault(); checkAnswer() }}>
-              <label htmlFor="missing-word">Dein fehlendes Wort</label>
-              <div className="answer-row">
-                <input id="missing-word" value={answer} onChange={(event) => { setAnswer(event.target.value); setFeedback(null) }} autoComplete="off" placeholder="Wort schreiben und Enter drücken" />
-              </div>
-            </form>
-          )}
           {feedback === 'wrong' && <p className="sentence-feedback wrong" aria-live="polite">Noch nicht ganz. Versuch es noch einmal!</p>}
           {feedback === 'correct' && (
             <div className="sentence-correct-actions">
               <p className="sentence-feedback correct" aria-live="polite"><Coins size={17} /> Richtig! +10 Goldmünzen</p>
             </div>
           )}
-          {!current && sentences.length > 0 && <button className="play-button begin-button" onClick={nextSentence}>Satz beginnen <Sparkles size={16} /></button>}
           {!sentences.length && <p className="sentence-feedback wrong">Füge unten mindestens einen Satz mit markiertem Wort ein.</p>}
         </div>
       </section>

@@ -665,6 +665,27 @@ button {
   min-height: .88em;
   border-bottom-color: #41633d;
 }
+.book-answer-form {
+  display: contents;
+}
+.word-gap-input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #41633d;
+  font: inherit;
+  text-align: center;
+}
+.word-gap-input:focus-visible {
+  outline: 2px solid #a86b2a99;
+  outline-offset: 2px;
+}
 .book-stamp {
   justify-self: end;
   margin-top: 8px;
