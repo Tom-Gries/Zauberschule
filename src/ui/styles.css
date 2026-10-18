@@ -253,6 +253,66 @@ button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
+.wizard-card-art {
+  display: flex;
+  justify-content: flex-start;
+  background: #21172d;
+}
+.wizard-card-art > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+.wizard-card-art::after {
+  content: '';
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, #171126a8);
+}
+.wizard-card.locked-card {
+  opacity: 1;
+}
+.wizard-price-tag {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  right: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 11px;
+  border: 1px solid #ffe193;
+  border-radius: 99px;
+  background: linear-gradient(135deg, #42272f, #21172d);
+  color: #ffe49b;
+  font-size: 13px !important;
+  font-weight: 850;
+  box-shadow: 0 3px 12px #100815a8;
+}
+.unlock-button {
+  gap: 6px;
+  padding-inline: 11px;
+  white-space: nowrap;
+}
+.unlock-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.45);
+  opacity: 0.65;
+}
+.unlock-shortfall {
+  min-height: 0 !important;
+  margin: 8px 0 0 !important;
+  color: #ffdf91 !important;
+  font-size: 11px !important;
+  font-weight: 700;
+  text-align: right;
+}
+.wizard-card-art svg {
+  color: #ffe3a4;
+}
 .game-card {
   min-height: 330px;
   overflow: hidden;
@@ -487,6 +547,287 @@ button {
   grid-template-columns: minmax(280px, 0.8fr) minmax(510px, 1.35fr);
   gap: 20px;
   align-items: stretch;
+}
+.wizard-layout {
+  width: min(1080px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(420px, 1.2fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.wizard-story,
+.wizard-task {
+  min-height: 570px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.wizard-story {
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(54, 35, 68, 0.92),
+    rgba(29, 19, 42, 0.93)
+  );
+}
+.wizard-illustration {
+  width: min(100%, 440px);
+  aspect-ratio: 0.9;
+  overflow: hidden;
+  border: 1px solid #ffda8c55;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px #100a1d88;
+  transition: transform 0.35s;
+}
+.wizard-illustration img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+.wizard-awake {
+  animation: happy-pop 0.6s ease-in-out 2;
+}
+.wizard-story h1 {
+  margin: 27px 0 8px;
+  color: #ffdc91;
+  font:
+    28px Marcellus,
+    Georgia,
+    serif;
+}
+.wizard-story > p {
+  max-width: 300px;
+  margin: 0;
+  color: #e2d3e7;
+  line-height: 1.6;
+}
+.wizard-reward {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: #ffdd83;
+  font-weight: 750;
+}
+.wizard-task {
+  gap: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(35, 22, 48, 0.94),
+    rgba(29, 19, 41, 0.93)
+  );
+}
+.wizard-task .eyebrow {
+  justify-content: center;
+  margin-bottom: 0;
+}
+.wizard-task h2 {
+  margin: 0;
+  font:
+    23px Marcellus,
+    Georgia,
+    serif;
+}
+.dream-clock {
+  position: relative;
+  width: 100%;
+  min-height: 218px;
+  display: grid;
+  place-items: center;
+}
+.day-night-symbol {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffe48b;
+  opacity: 0.32;
+  font-size: 112px;
+  line-height: 1;
+  filter: drop-shadow(0 0 18px #ffdb6d88);
+}
+.dream-clock > .analog-clock {
+  z-index: 1;
+  background: radial-gradient(
+    circle,
+    rgba(255, 241, 201, 0.82),
+    rgba(231, 188, 113, 0.76)
+  );
+}
+.digital-clock {
+  min-width: 190px;
+  padding: 12px 24px;
+  border: 2px solid #e6ba69;
+  border-radius: 14px;
+  background: #21182b;
+  color: #ffe7ae;
+  font:
+    800 42px/1.2 ui-monospace,
+    Consolas,
+    monospace;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 15px #ffca68a3;
+  box-shadow:
+    inset 0 0 18px #08060d88,
+    0 0 18px #ffce5c24;
+}
+.analog-clock {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  flex: 0 0 auto;
+  border: 7px solid #d69a47;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff1c9, #e7bc71);
+  box-shadow:
+    0 5px 20px #09061199,
+    inset 0 0 0 4px #fff4d5;
+}
+.clock-tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  color: #392344;
+  text-align: center;
+  font-weight: 800;
+  font-size: 13px;
+}
+.clock-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  z-index: 2;
+  transform-origin: center bottom;
+  border-radius: 99px;
+}
+.draggable-hand {
+  padding: 0;
+  border: 0;
+  appearance: none;
+  cursor: grab;
+  touch-action: none;
+}
+.draggable-hand::after {
+  content: '';
+  position: absolute;
+  inset: -9px -8px;
+}
+.draggable-hand:active {
+  cursor: grabbing;
+}
+.draggable-hand:focus-visible {
+  outline: 3px solid #fff0a8;
+  outline-offset: 3px;
+}
+.hour-hand {
+  width: 7px;
+  height: 48px;
+  background: #50336b;
+}
+.minute-hand {
+  width: 4px;
+  height: 68px;
+  background: #bd7135;
+}
+.clock-center {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #442b59;
+  border: 2px solid #fff0bd;
+}
+.answer-clock {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.answer-clock .analog-clock {
+  width: 150px;
+  height: 150px;
+  border-width: 6px;
+}
+.answer-clock .clock-tick {
+  font-size: 10px;
+  transform-origin: center;
+}
+.answer-clock .hour-hand {
+  height: 37px;
+}
+.answer-clock .minute-hand {
+  height: 54px;
+}
+.clock-controls {
+  width: min(390px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.time-control {
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  grid-template-rows: auto 42px;
+  align-items: center;
+  gap: 3px;
+}
+.time-control > span {
+  grid-column: 1 / -1;
+  color: #e3d3e8;
+  font-size: 11px;
+}
+.time-control button {
+  height: 40px;
+  border: 1px solid #ffda8c70;
+  border-radius: 9px;
+  background: #39284d;
+  color: #ffdf98;
+  font-size: 22px;
+  cursor: pointer;
+}
+.time-control strong {
+  font:
+    700 24px ui-monospace,
+    Consolas,
+    monospace;
+}
+.clock-hint {
+  margin: 0;
+  color: #d3c5db;
+  font-size: 11px;
+}
+.clock-feedback {
+  min-height: 17px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.clock-feedback.wrong {
+  color: #ffb7a6;
+}
+.clock-feedback.correct {
+  color: #ffe292;
+}
+.clock-submit {
+  margin-top: auto;
+  min-width: 190px;
+  border: 1px solid #ffda8c;
+  cursor: pointer;
+}
+.next-arrow {
+  transform: rotate(180deg);
 }
 .creature-panel {
   position: relative;
@@ -869,6 +1210,15 @@ button {
   .welcome-panel {
     min-height: 210px;
   }
+  .wizard-layout {
+    grid-template-columns: minmax(220px, 0.75fr) minmax(390px, 1.25fr);
+    gap: 12px;
+  }
+  .wizard-story,
+  .wizard-task {
+    min-height: 540px;
+    padding: 22px;
+  }
 }
 @media (max-width: 680px) {
   .world-page {
@@ -1019,6 +1369,68 @@ button {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+  .wizard-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wizard-story {
+    min-height: 0;
+    padding: 17px;
+  }
+  .wizard-illustration {
+    width: min(100%, 400px);
+  }
+  .wizard-story h1 {
+    margin: 12px 0 4px;
+    font-size: 21px;
+  }
+  .wizard-story > p {
+    font-size: 11px;
+  }
+  .wizard-reward {
+    margin-top: 9px;
+    font-size: 11px;
+  }
+  .wizard-task {
+    min-height: 0;
+    padding: 18px 14px;
+    gap: 10px;
+  }
+  .wizard-task h2 {
+    font-size: 18px;
+  }
+  .digital-clock {
+    min-width: 154px;
+    padding: 9px 15px;
+    font-size: 34px;
+  }
+  .dream-clock {
+    min-height: 190px;
+  }
+  .day-night-symbol {
+    font-size: 96px;
+  }
+  .analog-clock {
+    width: 160px;
+    height: 160px;
+  }
+  .clock-tick {
+    transform-origin: center;
+  }
+  .answer-clock .analog-clock {
+    width: 138px;
+    height: 138px;
+  }
+  .answer-clock .hour-hand {
+    height: 34px;
+  }
+  .answer-clock .minute-hand {
+    height: 49px;
+  }
+  .clock-submit {
+    margin-top: 3px;
   }
   .creature-panel {
     min-height: unset;
@@ -1201,3 +1613,897 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Fixed 1536×1024 source artboard. Every overlay coordinate is measured in source pixels. */
+.wizard-scene-frame {
+  position: relative;
+  width: min(1536px, 100%);
+  aspect-ratio: 1536 / 1024;
+  margin: 0 auto;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 18px;
+  box-shadow:
+    0 18px 50px #100a1dcc,
+    0 0 0 2px #c78b3c,
+    inset 0 0 0 2px #ffdf8c55;
+}
+.wizard-scene {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1536px;
+  height: 1024px;
+  overflow: hidden;
+  isolation: isolate;
+  container-type: inline-size;
+  transform-origin: top left;
+  background: #21162b;
+}
+.wizard-scene-image {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 1536px;
+  height: 1024px;
+  object-fit: fill;
+}
+.dream-clock-position,
+.alarm-shell-position,
+.alarm-screen-position,
+.alarm-hotspots,
+.wizard-game-feedback {
+  position: absolute;
+  z-index: 2;
+}
+.dream-clock-position {
+  left: 925px;
+  top: 110px;
+  width: 220px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+}
+.dream-clock-position.dream-digital-position {
+  left: 925px;
+  top: 71px;
+}
+.dream-clock-position.dream-analog-position {
+  left: 974px;
+  top: 45px;
+}
+.alarm-shell-position {
+  z-index: 1;
+  left: 814px;
+  top: 631px;
+  width: 550px;
+  height: 367px;
+  pointer-events: none;
+}
+.alarm-shell-position > img,
+.digital-shell > img,
+.analog-clock-shell > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.analog-clock-shell {
+  position: relative;
+  width: 330px;
+  height: 330px;
+  display: grid;
+  place-items: center;
+}
+.analog-clock-face {
+  position: absolute;
+  left: 22.7%;
+  top: 30.5%;
+  width: 56%;
+  height: 56%;
+}
+.analog-clock-face > .analog-clock {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  container-type: inline-size;
+}
+.analog-clock-face .clock-tick {
+  transform-origin: center;
+}
+.dream-clock-position > .analog-clock-shell {
+  width: 370px;
+  height: 370px;
+}
+.alarm-screen-position.answer-analog > .analog-clock-shell {
+  width: 460px;
+  height: 460px;
+}
+.alarm-screen-position.answer-analog .analog-clock-face {
+  left: 22.7%;
+  top: 30.5%;
+  width: 56%;
+  height: 56%;
+}
+.digital-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.digital-shell-display {
+  position: absolute;
+  left: 14%;
+  top: 31%;
+  width: 71%;
+  height: 30%;
+}
+.digital-shell.dream-digital-shell {
+  width: 460px;
+  height: 307px;
+}
+.dream-digital-shell .digital-shell-display {
+  left: 14%;
+  top: 31%;
+  width: 71%;
+  height: 30%;
+}
+.digital-shell-display > .digital-clock {
+  --digit-height: 104px;
+}
+.digital-shell-display > .digital-clock.dream-digital {
+  --digit-height: 70px;
+}
+.dream-clock-position > .analog-clock {
+  width: 220px;
+  height: 220px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  container-type: inline-size;
+}
+.dream-clock-position .clock-tick {
+  width: 31px;
+  color: #56331e;
+  font:
+    900 26px/1 Georgia,
+    serif;
+  text-shadow: 0 1px #fff3d6;
+}
+.dream-clock-position .hour-hand {
+  width: 7px;
+  height: 59px;
+  background: linear-gradient(90deg, #63360f, #dda64e 48%, #55300e);
+  box-shadow: 0 0 2px #2b180b;
+}
+.dream-clock-position .minute-hand {
+  width: 5px;
+  height: 84px;
+  background: linear-gradient(90deg, #62370f, #e5b255 48%, #4e290c);
+  box-shadow: 0 0 2px #2b180b;
+}
+.dream-clock-position .clock-center {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff0bc;
+  background: radial-gradient(circle at 35% 30%, #fff5ce, #a96622 72%);
+  box-shadow: 0 1px 3px #2b160b;
+}
+.digital-clock {
+  --digit-height: 138px;
+  --digit-color: #ff981a;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--digit-color);
+  filter: drop-shadow(0 0 4px #ff851c) drop-shadow(0 0 10px #ff6c11a8);
+}
+.digital-clock.dream-digital {
+  --digit-height: 64px;
+  --digit-color: #72431e;
+  gap: 6px;
+  filter: drop-shadow(0 1px 2px #a36c2e66);
+}
+.seven-segment-digit {
+  display: block;
+  flex: 0 0 auto;
+  width: auto;
+  height: var(--digit-height);
+  overflow: visible;
+}
+.seven-segment-digit .segment-on {
+  fill: var(--digit-color);
+}
+.seven-segment-digit .segment-off {
+  fill: var(--digit-color);
+  opacity: 0.08;
+}
+.digital-colon {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: 28px;
+  height: var(--digit-height);
+}
+.digital-colon::before,
+.digital-colon::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 24%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--digit-color);
+  box-shadow: 0 0 5px var(--digit-color);
+}
+.digital-colon::before {
+  top: 28%;
+}
+.digital-colon::after {
+  bottom: 28%;
+}
+.alarm-screen-position.answer-digital {
+  left: 891px;
+  top: 740px;
+  width: 391px;
+  height: 110px;
+}
+.alarm-screen-position.answer-digital .digital-clock {
+  --digit-height: 84px;
+}
+.alarm-screen-position.answer-analog {
+  left: 915px;
+  top: 485px;
+  width: 460px;
+  height: 460px;
+}
+.alarm-screen-position.answer-analog > .analog-clock {
+  width: 146px;
+  height: 146px;
+  container-type: inline-size;
+  border: 3px solid #805024;
+  background: radial-gradient(circle, #fff0cb 0 68%, #dbad66 100%);
+  box-shadow:
+    inset 0 0 0 2px #f7d99c,
+    0 2px 7px #100805;
+}
+.alarm-screen-position.answer-analog .clock-tick {
+  width: 36px;
+  color: #392344;
+  font:
+    900 10cqw/1 Georgia,
+    serif;
+}
+.alarm-screen-position.answer-analog .hour-hand {
+  width: 8px;
+  height: 82px;
+  background: #56351e;
+}
+.alarm-screen-position.answer-analog .minute-hand {
+  width: 5px;
+  height: 116px;
+  background: #9c5d26;
+}
+.alarm-screen-position.answer-analog .clock-center {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff1c8;
+  background: #8c4e1f;
+}
+.alarm-hotspots {
+  left: 0;
+  top: 0;
+  width: 1536px;
+  height: 1024px;
+  pointer-events: none;
+}
+.alarm-hotspot {
+  position: absolute;
+  width: 150px;
+  height: 98px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 16%;
+  background: transparent;
+  color: #fff4d6;
+  cursor: pointer;
+  pointer-events: auto;
+  text-shadow:
+    0 2px 3px #321605,
+    0 0 6px #120804;
+}
+.alarm-hotspot span {
+  font:
+    900 40px/1 Arial,
+    sans-serif;
+  -webkit-text-stroke: 1px #603412;
+}
+.alarm-hotspot:hover span {
+  color: #fff9e8;
+  transform: scale(1.12);
+}
+.alarm-hotspot:focus-visible {
+  outline: 3px solid #fff2a9;
+  outline-offset: 0;
+  background: #ffeb9b30;
+}
+.alarm-hour-up {
+  left: 934px;
+  top: 652px;
+}
+.alarm-minute-up {
+  left: 1092px;
+  top: 652px;
+}
+.alarm-hour-down {
+  left: 934px;
+  top: 836px;
+}
+.alarm-minute-down {
+  left: 1092px;
+  top: 836px;
+}
+.wizard-game-feedback {
+  left: 845px;
+  top: 927px;
+  width: 478px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+  pointer-events: none;
+}
+.wizard-game-feedback > * {
+  margin: 0;
+}
+.wizard-game-feedback .scene-feedback {
+  color: #fff1c8;
+  font-size: 15px;
+  text-shadow: 0 1px 4px #1a0905;
+}
+.wizard-game-feedback .wrong {
+  color: #ffd0b8;
+}
+.wizard-game-feedback .correct {
+  color: #ffeb9a;
+}
+.wizard-game-feedback .clock-submit {
+  min-width: 0;
+  margin: 0;
+  padding: 7px 14px;
+  border: 1px solid #ffcf70;
+  background: linear-gradient(#733c21, #371d2c);
+  box-shadow:
+    0 2px 8px #100805aa,
+    inset 0 1px #fff2c255;
+  font-size: 17px;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+.wizard-game-feedback .clock-submit .next-arrow {
+  transform: rotate(180deg);
+}
+.wizard-game-feedback.is-awake {
+  left: 680px;
+  top: 790px;
+  width: 280px;
+}
+.wizard-game-feedback.is-awake .clock-submit {
+  width: 250px;
+  padding: 16px 28px;
+  border: 3px solid #ffe28a;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffd968, #cf8128 48%, #71391f);
+  color: #341b20;
+  font:
+    900 30px/1.1 Georgia,
+    serif;
+  text-shadow: 0 1px 0 #fff3c7;
+  box-shadow:
+    0 0 0 5px #532b20cc,
+    0 0 24px #ffd45d,
+    inset 0 2px 0 #fff5c3;
+}
+.wizard-game-feedback.is-awake .clock-submit .next-arrow {
+  display: none;
+}
+
+/* Mobile-first rendering for the wizard scene; desktop keeps the measured artboard. */
+.wizard-mobile-game {
+  display: none;
+}
+@media (max-width: 680px) {
+  .wizard-mobile-game {
+    display: grid;
+    gap: 12px;
+    width: min(100%, 520px);
+    margin: 0 auto;
+  }
+  .wizard-scene-frame {
+    display: none;
+  }
+  .wizard-mobile-scene {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border: 2px solid #bd8540;
+    border-radius: 17px;
+    background: #201329;
+    box-shadow: 0 12px 28px #100a1dcc, inset 0 0 0 1px #ffe0a444;
+    isolation: isolate;
+  }
+  .wizard-mobile-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .wizard-mobile-dream {
+    position: absolute;
+    top: 5%;
+    right: 4%;
+    display: grid;
+    place-items: center;
+    width: 38%;
+    height: 42%;
+    padding: 5px;
+    border: 1px solid #fff0d4;
+    border-radius: 48% 48% 45% 45%;
+    background: radial-gradient(ellipse at 50% 45%, #fff9e8f2 0 48%, #fff2d4e8 70%, #fff0d4a8 100%);
+    box-shadow: 0 4px 14px #23102b66, inset 0 0 0 2px #ffffff88;
+  }
+  .wizard-mobile-dream::after {
+    content: '';
+    position: absolute;
+    left: -9%;
+    bottom: -7%;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff2d4;
+    box-shadow: -10px 13px 0 -5px #fff2d4;
+    z-index: -1;
+  }
+  .mobile-clock-caption {
+    position: absolute;
+    z-index: 1;
+    top: 7%;
+    padding: 2px 7px;
+    border-radius: 99px;
+    background: #4c2a44;
+    color: #ffe5a6;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: .1em;
+  }
+  .wizard-mobile-dream > .digital-clock {
+    width: 82%;
+    height: 52%;
+    margin-top: 11px;
+    --digit-height: clamp(19px, 8vw, 36px);
+    --digit-color: #60381f;
+    gap: 2px;
+    filter: none;
+  }
+  .wizard-mobile-dream .digital-colon {
+    width: 8px;
+  }
+  .wizard-mobile-dream > .analog-clock-shell {
+    width: 72%;
+    height: 78%;
+    margin-top: 12px;
+  }
+  .wizard-mobile-dream .analog-clock-face {
+    left: 22.7%;
+    top: 30.5%;
+    width: 56%;
+    height: 56%;
+  }
+  .wizard-mobile-dream .analog-clock-face .clock-tick {
+    width: 16px;
+    color: #56331e;
+    font: 900 18cqw/1 Georgia, serif;
+  }
+  .wizard-mobile-answer {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    padding: 17px 16px 14px;
+    border: 1px solid #dba753;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #3e2146ed, #21152ced 65%);
+    box-shadow: 0 10px 24px #10091688, inset 0 1px #fff1bc33;
+    color: #fff4dc;
+    text-align: center;
+  }
+  .mobile-answer-heading .eyebrow {
+    margin: 0 0 4px;
+    color: #f5c96e;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .15em;
+  }
+  .mobile-answer-heading h1 {
+    margin: 0;
+    font: 700 22px/1.15 Georgia, serif;
+  }
+  .mobile-answer-heading p {
+    margin: 6px 0 0;
+    color: #e8d7bd;
+    font-size: 12px;
+  }
+  .wizard-mobile-analog-answer {
+    width: min(56vw, 220px);
+    aspect-ratio: 1;
+    padding: 10px;
+    border: 4px solid #b8752e;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff1cd, #d8a35d);
+    box-shadow: inset 0 0 0 3px #ffe5a7, 0 5px 12px #10080599;
+    container-type: inline-size;
+  }
+  .wizard-mobile-analog-answer .analog-clock {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: none;
+    container-type: inline-size;
+  }
+  .wizard-mobile-analog-answer .clock-tick {
+    width: 24px;
+    color: #392344;
+    font: 900 11cqw/1 Georgia, serif;
+  }
+  .wizard-mobile-analog-answer .hour-hand {
+    width: 7px;
+    height: 34%;
+    background: #56351e;
+  }
+  .wizard-mobile-analog-answer .minute-hand {
+    width: 4px;
+    height: 43%;
+    background: #9c5d26;
+  }
+  .wizard-mobile-analog-answer .clock-center {
+    width: 15px;
+    height: 15px;
+    background: #8c4e1f;
+  }
+  .wizard-mobile-digital-answer {
+    display: grid;
+    justify-items: center;
+    gap: 7px;
+    width: 100%;
+    padding: 12px 10px;
+    border: 2px solid #a86629;
+    border-radius: 18px;
+    background: linear-gradient(#210f0a, #481d0a 55%, #160a06);
+    box-shadow: inset 0 0 0 3px #f2a74855, 0 5px 14px #120a08aa;
+  }
+  .wizard-mobile-digital-answer > .digital-clock {
+    width: 100%;
+    height: 64px;
+    --digit-height: 48px;
+    gap: 4px;
+  }
+  .wizard-mobile-digital-answer .digital-colon {
+    width: 14px;
+  }
+  .mobile-digital-controls {
+    display: flex;
+    justify-content: center;
+    gap: clamp(38px, 22vw, 92px);
+    width: 100%;
+  }
+  .mobile-digital-controls button {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 42px;
+    border: 2px solid #f9d478;
+    border-radius: 12px;
+    background: linear-gradient(#874c25, #48222c);
+    color: #fff4d3;
+    box-shadow: 0 3px 0 #26131a, inset 0 1px #fff4c766;
+    font-size: 26px;
+    font-weight: 900;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .mobile-digital-controls button:active {
+    transform: translateY(2px);
+  }
+  .mobile-auto-check {
+    min-height: 16px;
+    margin: 0;
+    color: #f4d596;
+    font-size: 11px;
+  }
+  .wizard-mobile-awake {
+    position: absolute;
+    right: 4%;
+    bottom: 6%;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid #ffe08b;
+    border-radius: 16px;
+    background: #321a35ef;
+    color: #fff0c4;
+    box-shadow: 0 4px 16px #1a0b20aa;
+    font: 700 12px Georgia, serif;
+  }
+  .wizard-mobile-awake .play-button {
+    min-height: 44px;
+    padding: 10px 20px;
+    border: 2px solid #ffe08b;
+    background: linear-gradient(145deg, #ffd968, #cf8128 48%, #71391f);
+    color: #341b20;
+    font-size: 17px;
+  }
+  .wizard-mobile-awake .next-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+/* Portrait artboard follows the desktop scene's fixed-pixel overlay model. */
+.wizard-mobile-frame {
+  display: none;
+}
+@media (max-width: 680px) {
+  .wizard-page {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .wizard-page .game-topbar {
+    flex: 0 0 auto;
+  }
+  .wizard-mobile-game {
+    display: none;
+  }
+  .wizard-page .game-topbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 5px;
+  }
+  .wizard-page .round-chip {
+    margin: 0;
+    font-size: 9px;
+  }
+  .wizard-page .coin-pill {
+    min-width: 0;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+  .wizard-mobile-frame {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    align-self: center;
+    width: min(1024px, calc(100vw - 20px));
+    min-width: 0;
+    max-width: 1024px;
+    height: min(1536px, calc(100svh - 90px));
+    min-height: 420px;
+    margin: 0 auto;
+    overflow: hidden;
+    isolation: isolate;
+    border: 2px solid #bd8540;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px #100a1dcc, inset 0 0 0 1px #ffe0a444;
+  }
+  .wizard-mobile-scene {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1024px;
+    height: 1536px;
+    overflow: hidden;
+    isolation: isolate;
+    transform-origin: center;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #21162b;
+  }
+  .wizard-mobile-art {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    display: block;
+    width: 1024px;
+    height: 1536px;
+    object-fit: fill;
+  }
+  .wizard-mobile-scene.is-awake .wizard-mobile-art {
+    object-fit: cover;
+    object-position: left center;
+  }
+  .wizard-mobile-dream,
+  .wizard-mobile-answer {
+    position: absolute;
+    z-index: 2;
+  }
+  .wizard-mobile-dream {
+    left: 312px;
+    top: 52px;
+    width: 400px;
+    height: 400px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .wizard-mobile-dream::after {
+    display: none;
+  }
+  .wizard-mobile-dream.is-analog > .analog-clock-shell {
+    width: 330px;
+    height: 330px;
+  }
+  .wizard-mobile-dream.is-digital > .digital-shell {
+    width: 380px;
+    height: 254px;
+  }
+  .wizard-mobile-dream.is-digital .digital-shell-display {
+    left: 14%;
+    top: 31%;
+    width: 71%;
+    height: 30%;
+  }
+  .wizard-mobile-answer.is-digital {
+    left: 232px;
+    top: auto;
+    bottom: 60px;
+    width: 560px;
+    height: 374px;
+  }
+  .wizard-mobile-answer.is-analog {
+    left: 232px;
+    top: auto;
+    bottom: 60px;
+    width: 560px;
+    height: 374px;
+  }
+  .wizard-mobile-answer {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+    text-align: left;
+  }
+  .wizard-mobile-answer .mobile-alarm-art {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  .wizard-mobile-answer.is-digital > .digital-clock {
+    position: absolute;
+    left: 14%;
+    top: 31%;
+    width: 71%;
+    height: 30%;
+    --digit-height: 86px;
+    gap: 7px;
+  }
+  .wizard-mobile-answer.is-digital .digital-colon {
+    width: 25px;
+  }
+  .wizard-mobile-dream.is-digital > .digital-shell .digital-clock {
+    --digit-height: 76px;
+    gap: 5px;
+  }
+  .wizard-mobile-dream.is-digital .digital-colon {
+    width: 24px;
+  }
+  .mobile-digital-controls {
+    position: absolute;
+    z-index: 2;
+    left: 7%;
+    display: flex;
+    justify-content: space-evenly;
+    width: 86%;
+    gap: 0;
+  }
+  .mobile-controls-up {
+    top: 15%;
+  }
+  .mobile-controls-down {
+    bottom: 13%;
+  }
+  .mobile-digital-controls button {
+    width: 132px;
+    height: 118px;
+    border: 0;
+    border-radius: 18px;
+    background: transparent;
+    box-shadow: none;
+    color: #fff1c8;
+    font-size: 54px;
+    text-shadow: 0 3px 5px #341605, 0 0 10px #ffca52;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .mobile-digital-controls button:focus-visible {
+    outline: 4px solid #fff2a9;
+    outline-offset: -7px;
+    background: #ffeb9b30;
+  }
+  .mobile-answer-analog-clock {
+    position: absolute;
+    z-index: 1;
+    left: 128px;
+    top: 8px;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    place-items: center;
+    filter: drop-shadow(0 3px 5px #140a08);
+  }
+  .mobile-answer-analog-clock > .analog-clock-shell {
+    width: 300px;
+    height: 300px;
+  }
+  .mobile-auto-check {
+    display: none;
+  }
+  .wizard-mobile-awake {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: auto;
+    bottom: 100px;
+    right: auto;
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+    min-width: 0;
+    max-width: 88%;
+    padding: 22px 28px;
+    border: 2px solid #ffe08b;
+    border-radius: 22px;
+    background: #321a35ef;
+    color: #fff0c4;
+    box-shadow: 0 4px 16px #1a0b20aa;
+    font: 700 22px Georgia, serif;
+    transform: translateX(-50%);
+  }
+  .wizard-mobile-awake .play-button {
+    min-height: 84px;
+    padding: 18px 34px;
+    border-width: 3px;
+    font-size: 30px;
+  }
+}
+

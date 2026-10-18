@@ -1,4 +1,5 @@
 const COINS_KEY = 'zauberschmiede.coins.v1'
+const WIZARD_UNLOCKED_KEY = 'zauberschmiede.wizard-clock-unlocked.v1'
 const readStorage = (): Storage | null => {
   try {
     return typeof window === 'undefined' ? null : window.localStorage
@@ -17,6 +18,23 @@ export function loadCoins(): number {
 export function saveCoins(coins: number): void {
   try {
     readStorage()?.setItem(COINS_KEY, String(Math.max(0, Math.floor(coins))))
+  } catch {
+    /* Storage can be disabled; game still works in memory. */
+  }
+}
+
+export function loadWizardUnlocked(): boolean {
+  try {
+    return readStorage()?.getItem(WIZARD_UNLOCKED_KEY) === 'true'
+  } catch {
+    return false
+  }
+}
+
+export function saveWizardUnlocked(unlocked: boolean): void {
+  try {
+    if (unlocked) readStorage()?.setItem(WIZARD_UNLOCKED_KEY, 'true')
+    else readStorage()?.removeItem(WIZARD_UNLOCKED_KEY)
   } catch {
     /* Storage can be disabled; game still works in memory. */
   }

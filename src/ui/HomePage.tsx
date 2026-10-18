@@ -1,7 +1,22 @@
-import { ArrowRight, BookOpen, LockKeyhole, Sparkles, Star } from 'lucide-react'
+import {
+  ArrowRight,
+  BookOpen,
+  Coins,
+  LockKeyhole,
+  Sparkles,
+  Star,
+} from 'lucide-react'
 import { Link } from 'react-router'
 import { CoinPill } from './CoinPill'
-export function HomePage({ coins }: { coins: number }) {
+export function HomePage({
+  coins,
+  wizardUnlocked,
+  onUnlockWizard,
+}: {
+  coins: number
+  wizardUnlocked: boolean
+  onUnlockWizard: () => void
+}) {
   return (
     <main className="world-page home-page">
       <header className="topbar">
@@ -75,6 +90,61 @@ export function HomePage({ coins }: { coins: number }) {
               <div className="locked-label">
                 <LockKeyhole size={15} /> Bald verfügbar
               </div>
+            </div>
+          </article>
+          <article
+            className={`game-card wizard-card ${wizardUnlocked ? 'featured-card' : 'locked-card'}`}
+          >
+            <div className="card-art wizard-card-art">
+              <img
+                src="/images/wizard-dream-day.png"
+                alt="Der Zauberer schläft und träumt von einer Burg"
+              />
+              {!wizardUnlocked && (
+                <span className="wizard-price-tag">
+                  <Coins size={15} /> 100 G
+                </span>
+              )}
+            </div>
+            <div className="game-card-copy">
+              <div className="card-kicker">ZEIT LERNEN · UHR LESEN</div>
+              <h3>Den müden Zauberer wecken</h3>
+              <p>
+                {wizardUnlocked
+                  ? 'Lies die Traumzeit und stelle die Gegenuhr ein.'
+                  : 'Lies die Traumzeit und stelle die Gegenuhr ein. Einmalig für 100 Goldmünzen freischalten.'}
+              </p>
+              <div className="card-bottom">
+                {wizardUnlocked ? (
+                  <>
+                    <span className="difficulty">
+                      <Star size={14} fill="currentColor" /> Freigeschaltet
+                    </span>
+                    <Link className="play-button" to="/spiele/mueden-zauberer">
+                      Spielen <ArrowRight size={17} />
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <span className="difficulty">
+                      <LockKeyhole size={14} /> Einmaliger Kauf
+                    </span>
+                    <button
+                      className="play-button unlock-button"
+                      type="button"
+                      disabled={coins < 100}
+                      onClick={onUnlockWizard}
+                    >
+                      <Coins size={16} /> 100 G kaufen
+                    </button>
+                  </>
+                )}
+              </div>
+              {!wizardUnlocked && coins < 100 && (
+                <p className="unlock-shortfall">
+                  Noch {100 - coins} Goldmünzen sammeln
+                </p>
+              )}
             </div>
           </article>
           <article className="game-card locked-card">
