@@ -108,6 +108,9 @@ export function SentenceGamePage({
   }
 
   const current = sentenceIndex === null ? null : sentences[sentenceIndex]
+  const focusAnswerInput = (book: HTMLDivElement) => {
+    book.querySelector<HTMLInputElement>('.word-gap-input')?.focus()
+  }
   const checkAnswer = (value = answer) => {
     if (!current || feedback === 'correct' || !value.trim()) return
     if (
@@ -161,11 +164,8 @@ export function SentenceGamePage({
           <div className="open-book-scene" aria-live="polite">
             <div
               className="open-book-spread"
-              onClick={(event) => {
-                event.currentTarget
-                  .querySelector<HTMLInputElement>('.word-gap-input')
-                  ?.focus()
-              }}
+              onPointerDown={(event) => focusAnswerInput(event.currentTarget)}
+              onClick={(event) => focusAnswerInput(event.currentTarget)}
             >
               <div className="book-cover" aria-hidden="true" />
               <div className="book-page-stack">
