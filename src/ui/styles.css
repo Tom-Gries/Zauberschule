@@ -2388,11 +2388,11 @@ button {
     height: 30%;
   }
   .wizard-mobile-answer.is-digital {
-    left: 232px;
+    left: 132px;
     top: auto;
     bottom: 60px;
-    width: 560px;
-    height: 374px;
+    width: 760px;
+    height: 508px;
   }
   .wizard-mobile-answer.is-analog {
     left: 232px;
@@ -2480,7 +2480,7 @@ button {
   .mobile-answer-analog-clock {
     position: absolute;
     z-index: 1;
-    left: -140px;
+    left: -100px;
     top: 0;
     width: 840px;
     height: 840px;
@@ -2489,8 +2489,8 @@ button {
     filter: drop-shadow(0 3px 5px #140a08);
   }
   .mobile-answer-analog-clock > .analog-clock-shell {
-    width: 840px;
-    height: 840px;
+    width: 760px;
+    height: 760px;
   }
   .wizard-mobile-scene .analog-clock .clock-tick {
     width: 34px;
