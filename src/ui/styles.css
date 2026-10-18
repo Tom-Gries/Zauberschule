@@ -860,14 +860,6 @@ button {
   white-space: nowrap;
   pointer-events: none;
 }
-.book-stamp {
-  justify-self: end;
-  margin-top: 8px;
-  color: #658246;
-  font:
-    700 13px Georgia,
-    serif;
-}
 .answer-form {
   margin-top: 22px;
 }

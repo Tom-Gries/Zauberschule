@@ -185,7 +185,6 @@ export function SentenceGamePage({
                             sentence={current}
                             answer={current.missing}
                           />
-                          <span className="book-stamp">Richtig! ✨</span>
                         </div>
                       </div>
                       <div
