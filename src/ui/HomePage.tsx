@@ -1,20 +1,18 @@
-import {
-  ArrowRight,
-  Coins,
-  LockKeyhole,
-  Sparkles,
-  Star,
-} from 'lucide-react'
+import { ArrowRight, Coins, LockKeyhole, Sparkles, Star } from 'lucide-react'
 import { Link } from 'react-router'
 import { CoinPill } from './CoinPill'
 export function HomePage({
   coins,
   wizardUnlocked,
   onUnlockWizard,
+  sentenceUnlocked,
+  onUnlockSentence,
 }: {
   coins: number
   wizardUnlocked: boolean
   onUnlockWizard: () => void
+  sentenceUnlocked: boolean
+  onUnlockSentence: () => void
 }) {
   return (
     <main className="world-page home-page">
@@ -85,11 +83,42 @@ export function HomePage({
             <div className="game-card-copy">
               <div className="card-kicker">LESEN · WÖRTER FINDEN</div>
               <h3>Das verzauberte Satzbuch</h3>
-              <p>Finde das fehlende Wort und sammle Gold für den Zauberer.</p>
+              <p>
+                {sentenceUnlocked
+                  ? 'Finde das fehlende Wort und sammle Gold für den Zauberer.'
+                  : 'Finde das fehlende Wort. Einmalig für 250 Goldmünzen freischalten.'}
+              </p>
               <div className="card-bottom">
-                <span className="difficulty"><Star size={14} fill="currentColor" /> Deine Sätze</span>
-                <Link className="play-button" to="/spiele/wort-zauber">Spielen <ArrowRight size={17} /></Link>
+                {sentenceUnlocked ? (
+                  <>
+                    <span className="difficulty">
+                      <Star size={14} fill="currentColor" /> Deine Sätze
+                    </span>
+                    <Link className="play-button" to="/spiele/wort-zauber">
+                      Spielen <ArrowRight size={17} />
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <span className="difficulty">
+                      <LockKeyhole size={14} /> Einmaliger Kauf
+                    </span>
+                    <button
+                      className="play-button unlock-button"
+                      type="button"
+                      disabled={coins < 250}
+                      onClick={onUnlockSentence}
+                    >
+                      <Coins size={16} /> 250 G kaufen
+                    </button>
+                  </>
+                )}
               </div>
+              {!sentenceUnlocked && coins < 250 && (
+                <p className="unlock-shortfall">
+                  Noch {250 - coins} Goldmünzen sammeln
+                </p>
+              )}
             </div>
           </article>
           <article
