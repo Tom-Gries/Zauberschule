@@ -77,6 +77,21 @@ export function HomePage({
               </div>
             </div>
           </article>
+          <article className="game-card featured-card sentence-card">
+            <div className="card-art sentence-art" aria-hidden="true">
+              <span className="sentence-book">📖</span>
+              <span className="sentence-glow">✦</span>
+            </div>
+            <div className="game-card-copy">
+              <div className="card-kicker">LESEN · WÖRTER FINDEN</div>
+              <h3>Das verzauberte Satzbuch</h3>
+              <p>Finde das fehlende Wort und sammle Gold für den Zauberer.</p>
+              <div className="card-bottom">
+                <span className="difficulty"><Star size={14} fill="currentColor" /> Deine Sätze</span>
+                <Link className="play-button" to="/spiele/wort-zauber">Spielen <ArrowRight size={17} /></Link>
+              </div>
+            </div>
+          </article>
           <article
             className={`game-card wizard-card ${wizardUnlocked ? 'featured-card' : 'locked-card'}`}
           >

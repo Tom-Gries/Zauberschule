@@ -502,6 +502,236 @@ button {
   text-shadow: 0 2px 10px #090610;
 }
 
+.sentence-art {
+  background:
+    linear-gradient(#21152b44, #21152b66),
+    url('/images/sentence-book-world.png') center 65% / cover;
+}
+.sentence-book {
+  display: none;
+}
+.sentence-glow {
+  position: absolute;
+  top: 21px;
+  right: 25%;
+  color: #ffdf89;
+  font-size: 33px;
+  text-shadow: 0 0 22px #ffc64d;
+}
+.sentence-layout {
+  width: min(1100px, 100%);
+  margin: 8px auto 22px;
+}
+.sentence-main {
+  padding: clamp(20px, 3vw, 34px);
+}
+.sentence-main {
+  background: linear-gradient(145deg, rgba(35, 22, 48, .95), rgba(29, 19, 41, .92));
+}
+.sentence-main h1 {
+  margin: 0;
+  font: clamp(28px, 4vw, 40px)/1.1 Marcellus, Georgia, serif;
+}
+.sentence-intro {
+  max-width: 590px;
+  margin: 10px 0 22px;
+  color: #d8ccdf;
+  line-height: 1.55;
+}
+.open-book-scene {
+  perspective: 1800px;
+  margin: 8px 0 0;
+  filter: drop-shadow(0 12px 20px #10081788);
+}
+.open-book-spread {
+  position: relative;
+  min-height: 0;
+  height: clamp(320px, 52vw, 600px);
+  overflow: visible;
+  transform-style: preserve-3d;
+  background: url('/images/sentence-book-world.png') center 58% / cover no-repeat;
+  border-radius: 6px;
+}
+.open-book-spread::before {
+  content: none;
+}
+.book-left-page,
+.book-right-page {
+  position: absolute;
+  display: grid;
+  min-width: 0;
+  padding: 3% 4%;
+  background: transparent;
+  color: #4d3027;
+  text-shadow: 0 1px 1px #fff4dc88;
+}
+.book-left-page {
+  left: 20%;
+  top: 49%;
+  width: 32%;
+  height: 34%;
+  justify-items: center;
+}
+.book-right-page {
+  left: 52%;
+  top: 49%;
+  width: 34%;
+  height: 34%;
+  align-content: center;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+}
+.book-right-page > * {
+  backface-visibility: hidden;
+}
+.book-right-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, #e6c58c22, #fff4d422 50%, #b27a3722);
+  box-shadow: inset 6px 0 10px #70451c16;
+  transform: rotateY(180deg);
+  backface-visibility: visible;
+}
+.book-right-page.page-turning {
+  animation: book-page-turn 1s cubic-bezier(.45, .05, .45, .95) forwards;
+  pointer-events: none;
+}
+@keyframes book-page-turn {
+  0% { transform: rotateY(0); filter: brightness(1); }
+  45% { transform: rotateY(-92deg); filter: brightness(.82); }
+  100% { transform: rotateY(-180deg); filter: brightness(1); }
+}
+.book-chapter {
+  color: #9b6631;
+  font: 800 10px/1.2 Georgia, serif;
+  letter-spacing: .18em;
+  text-shadow: 0 1px #ffe9bb;
+}
+.book-flourish {
+  margin-top: 8%;
+  color: #b88641;
+  font-size: clamp(30px, 6vw, 58px);
+  text-shadow: 0 2px 8px #ad783333;
+}
+.page-decoration {
+  position: absolute;
+  top: 3%;
+  right: 5%;
+  color: #9c6734cc;
+}
+.book-page-number {
+  position: absolute;
+  right: 5%;
+  bottom: 4%;
+  color: #9a744e;
+  font: 12px Georgia, serif;
+}
+.broken-sentence {
+  align-self: center;
+  margin: 0;
+  font: clamp(17px, 2.45vw, 27px)/1.42 Georgia, serif;
+  text-align: center;
+}
+.word-gap {
+  display: inline-block;
+  min-width: 4.5em;
+  margin: 0 .14em;
+  border-bottom: 3px solid #b65e38;
+  color: #793c27;
+  font-weight: 700;
+  text-align: center;
+}
+.book-right-page .word-gap {
+  border-color: #638347;
+  color: #45613a;
+}
+.book-stamp {
+  justify-self: end;
+  margin-top: 8px;
+  color: #658246;
+  font: 700 13px Georgia, serif;
+}
+.answer-form {
+  margin-top: 22px;
+}
+.answer-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #f6dfae;
+  font-size: 13px;
+  font-weight: 750;
+}
+.answer-row {
+  display: flex;
+  gap: 9px;
+}
+.answer-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1px solid #dab36f;
+  border-radius: 10px;
+  background: #fff7e8;
+  color: #392436;
+  font-size: 17px;
+}
+.answer-row input:focus-visible,
+.answer-row .play-button,
+.sentence-correct-actions .play-button,
+.begin-button {
+  min-height: 45px;
+  cursor: pointer;
+}
+.answer-row .play-button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+.sentence-feedback {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 14px 0 0;
+  font-weight: 750;
+}
+.sentence-feedback.wrong {
+  color: #ffd0ba;
+}
+.sentence-feedback.correct {
+  color: #ffe28a;
+}
+.sentence-correct-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 15px;
+}
+.sentence-correct-actions .sentence-feedback {
+  margin: 0;
+}
+@media (max-width: 680px) {
+  .sentence-layout {
+    margin-top: 0;
+  }
+  .open-book-spread {
+    height: clamp(300px, 66vw, 430px);
+  }
+}
+@media (max-width: 430px) {
+  .book-left-page {
+    left: 8%;
+    width: 43%;
+  }
+  .book-right-page {
+    left: 51%;
+    width: 41%;
+  }
+}
+
 /* Play view */
 .game-page {
   display: flex;

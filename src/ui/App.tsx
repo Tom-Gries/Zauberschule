@@ -9,6 +9,7 @@ import {
 import { GamePage } from './GamePage'
 import { HomePage } from './HomePage'
 import { WizardClockPage } from './WizardClockPage'
+import { SentenceGamePage } from './SentenceGamePage'
 export default function App() {
   const [coins, setCoins] = useState(loadCoins)
   const [wizardUnlocked, setWizardUnlocked] = useState(loadWizardUnlocked)
@@ -49,6 +50,10 @@ export default function App() {
             <Navigate to="/" replace />
           )
         }
+      />
+      <Route
+        path="/spiele/wort-zauber"
+        element={<SentenceGamePage coins={coins} addCoins={addCoins} />}
       />
       <Route path="*" element={homePage} />
     </Routes>
