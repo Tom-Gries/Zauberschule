@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  BookOpen,
   Coins,
   LockKeyhole,
   Sparkles,
@@ -78,20 +77,6 @@ export function HomePage({
               </div>
             </div>
           </article>
-          <article className="game-card locked-card">
-            <div className="locked-art">
-              <BookOpen size={58} />
-              <span>3 × 4</span>
-            </div>
-            <div className="game-card-copy">
-              <div className="card-kicker">ZAHLEN & MUSTER</div>
-              <h3>Finde die Zahlen</h3>
-              <p>Entdecke verborgene Zahlenpaare in der Schatztruhe.</p>
-              <div className="locked-label">
-                <LockKeyhole size={15} /> Bald verfügbar
-              </div>
-            </div>
-          </article>
           <article
             className={`game-card wizard-card ${wizardUnlocked ? 'featured-card' : 'locked-card'}`}
           >
@@ -145,20 +130,6 @@ export function HomePage({
                   Noch {100 - coins} Goldmünzen sammeln
                 </p>
               )}
-            </div>
-          </article>
-          <article className="game-card locked-card">
-            <div className="locked-art potion-art">
-              <span>🧪</span>
-              <span>12 ÷ 3</span>
-            </div>
-            <div className="game-card-copy">
-              <div className="card-kicker">ZAUBERRECHNEN</div>
-              <h3>Der Zaubertrank</h3>
-              <p>Mische die richtigen Zutaten für deinen Zaubertrank.</p>
-              <div className="locked-label">
-                <LockKeyhole size={15} /> Bald verfügbar
-              </div>
             </div>
           </article>
         </div>
