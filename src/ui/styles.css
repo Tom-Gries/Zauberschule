@@ -574,7 +574,7 @@ button {
   backface-visibility: visible;
 }
 .book-right-page > .broken-sentence {
-  max-width: 82%;
+  max-width: none;
   padding: 0;
 }
 .book-next-content {
@@ -639,7 +639,7 @@ button {
 .broken-sentence {
   align-self: start;
   width: 100%;
-  max-width: 82%;
+  max-width: none;
   margin: 0;
   color: #302016;
   font: 500 clamp(20px, 2.35vw, 27px)/1.9 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
@@ -659,6 +659,10 @@ button {
   font-weight: 600;
   text-align: center;
   vertical-align: baseline;
+}
+.word-gap:focus-within {
+  border-bottom-color: #a86b2a;
+  box-shadow: 0 1px 0 #a86b2a88;
 }
 .word-gap.is-solved {
   height: auto;
@@ -683,8 +687,7 @@ button {
   text-align: center;
 }
 .word-gap-input:focus-visible {
-  outline: 2px solid #a86b2a99;
-  outline-offset: 2px;
+  outline: 0;
 }
 .book-stamp {
   justify-self: end;
