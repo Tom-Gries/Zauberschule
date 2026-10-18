@@ -1,4 +1,4 @@
-import { ArrowLeft, Coins, Sparkles } from 'lucide-react'
+import { ArrowLeft, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import sentenceEntries from '../game/sentences.json'
@@ -97,7 +97,6 @@ export function SentenceGamePage({
   const [round, setRound] = useState(sentenceIndex === null ? 0 : 1)
   const [correctStreak, setCorrectStreak] = useState(0)
   const [rewardTier, setRewardTier] = useState(10)
-  const [earnedCoins, setEarnedCoins] = useState<number | null>(null)
 
   const finishPageTurn = () => {
     if (nextPageIndex === null) return
@@ -134,11 +133,8 @@ export function SentenceGamePage({
     const nextStreak = correctStreak + 1
     setCorrectStreak(nextStreak)
     if (nextStreak % 10 === 0) {
-      setEarnedCoins(rewardTier)
       addCoins(rewardTier)
       setRewardTier((value) => value + 5)
-    } else {
-      setEarnedCoins(null)
     }
   }
 
@@ -245,21 +241,6 @@ export function SentenceGamePage({
               <div className="book-gutter" aria-hidden="true" />
             </div>
           </div>
-          {feedback === 'correct' && (
-            <div className="sentence-correct-actions">
-              <p className="sentence-feedback correct" aria-live="polite">
-                {earnedCoins !== null ? (
-                  <>
-                    <Coins size={17} /> Belohnung: +{earnedCoins} Goldmünzen
-                  </>
-                ) : (
-                  <>
-                    <Sparkles size={17} /> Richtig!
-                  </>
-                )}
-              </p>
-            </div>
-          )}
           {!sentences.length && (
             <p className="sentence-feedback wrong">
               Füge unten mindestens einen Satz mit markiertem Wort ein.
