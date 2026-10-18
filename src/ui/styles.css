@@ -2357,10 +2357,10 @@ button {
     z-index: 2;
   }
   .wizard-mobile-dream {
-    left: 312px;
+    left: 50%;
     top: 100px;
-    width: 400px;
-    height: 400px;
+    width: 760px;
+    height: 508px;
     display: grid;
     place-items: center;
     padding: 0;
@@ -2368,6 +2368,7 @@ button {
     border-radius: 0;
     background: transparent;
     box-shadow: none;
+    transform: translateX(-50%);
   }
   .wizard-mobile-dream::after {
     display: none;
@@ -2490,6 +2491,22 @@ button {
   .mobile-answer-analog-clock > .analog-clock-shell {
     width: 840px;
     height: 840px;
+  }
+  .wizard-mobile-scene .analog-clock .clock-tick {
+    width: 34px;
+    font: 900 10cqw/1 Georgia, serif;
+  }
+  .wizard-mobile-scene .analog-clock .hour-hand {
+    width: 3cqw;
+    height: 30cqw;
+  }
+  .wizard-mobile-scene .analog-clock .minute-hand {
+    width: 1.8cqw;
+    height: 43cqw;
+  }
+  .wizard-mobile-scene .analog-clock .clock-center {
+    width: 3.5cqw;
+    height: 3.5cqw;
   }
   .mobile-auto-check {
     display: none;
