@@ -556,6 +556,7 @@ button {
 }
 .book-right-page {
   position: absolute;
+  box-sizing: border-box;
   display: grid;
   min-width: 0;
   background: transparent;
@@ -579,6 +580,7 @@ button {
 }
 .book-next-content {
   position: absolute;
+  box-sizing: border-box;
   inset: 0;
   z-index: 1;
   display: grid;
@@ -609,6 +611,7 @@ button {
 }
 .book-turn-face {
   position: absolute;
+  box-sizing: border-box;
   z-index: 1;
   inset: 0;
   display: grid;
@@ -674,8 +677,9 @@ button {
 .word-gap {
   position: relative;
   display: inline-block;
+  width: 3.3em;
   min-width: 3.3em;
-  height: .88em;
+  height: 1.05em;
   margin: 0 .16em;
   border-bottom: 2px solid #43291b;
   color: #302016;
@@ -711,7 +715,16 @@ button {
   opacity: 0;
 }
 .word-gap-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-bottom: .04em;
+  line-height: 1;
   white-space: nowrap;
+  pointer-events: none;
 }
 .book-stamp {
   justify-self: end;

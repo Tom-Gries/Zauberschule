@@ -35,10 +35,15 @@ function SentenceLine({
   inputValue?: string
   onInputChange?: (value: string) => void
 }) {
+  const visibleWord = inputValue ?? answer ?? ''
+
   return (
     <p className="broken-sentence" aria-label={ariaLabel}>
       {sentence.before}
-      <span className={`word-gap ${answer ? 'is-solved' : ''}`}>
+      <span
+        className={`word-gap ${answer ? 'is-solved' : ''}`}
+        style={onInputChange || answer ? { width: `${Math.max(3.3, visibleWord.length * 0.58 + 0.5)}em` } : undefined}
+      >
         {onInputChange ? (
           <>
             <span className="word-gap-value" aria-hidden="true">{inputValue}</span>
