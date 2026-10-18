@@ -86,7 +86,7 @@ export function HomePage({
               <p>
                 {sentenceUnlocked
                   ? 'Finde das fehlende Wort und sammle Gold für den Zauberer.'
-                  : 'Finde das fehlende Wort. Einmalig für 250 Goldmünzen freischalten.'}
+                  : 'Finde das fehlende Wort. Einmalig für 150 Goldmünzen freischalten.'}
               </p>
               <div className="card-bottom">
                 {sentenceUnlocked ? (
@@ -106,17 +106,17 @@ export function HomePage({
                     <button
                       className="play-button unlock-button"
                       type="button"
-                      disabled={coins < 250}
+                      disabled={coins < 150}
                       onClick={onUnlockSentence}
                     >
-                      <Coins size={16} /> 250 G kaufen
+                      <Coins size={16} /> 150 G kaufen
                     </button>
                   </>
                 )}
               </div>
-              {!sentenceUnlocked && coins < 250 && (
+              {!sentenceUnlocked && coins < 150 && (
                 <p className="unlock-shortfall">
-                  Noch {250 - coins} Goldmünzen sammeln
+                  Noch {150 - coins} Goldmünzen sammeln
                 </p>
               )}
             </div>

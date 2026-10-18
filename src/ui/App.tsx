@@ -31,8 +31,8 @@ export default function App() {
     saveWizardUnlocked(true)
   }
   const unlockSentence = () => {
-    if (sentenceUnlocked || coins < 250) return
-    const remainingCoins = coins - 250
+    if (sentenceUnlocked || coins < 150) return
+    const remainingCoins = coins - 150
     setCoins(remainingCoins)
     saveCoins(remainingCoins)
     setSentenceUnlocked(true)
