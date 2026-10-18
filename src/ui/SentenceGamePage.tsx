@@ -40,15 +40,18 @@ function SentenceLine({
       {sentence.before}
       <span className={`word-gap ${answer ? 'is-solved' : ''}`}>
         {onInputChange ? (
-          <input
-            className="word-gap-input"
-            aria-label="Fehlendes Wort"
-            value={inputValue ?? ''}
-            onChange={(event) => onInputChange(event.target.value)}
-            autoComplete="off"
-            spellCheck={false}
-            autoFocus
-          />
+          <>
+            <span className="word-gap-value" aria-hidden="true">{inputValue}</span>
+            <input
+              className="word-gap-input"
+              aria-label="Fehlendes Wort"
+              value={inputValue ?? ''}
+              onChange={(event) => onInputChange(event.target.value)}
+              autoComplete="off"
+              spellCheck={false}
+              autoFocus
+            />
+          </>
         ) : answer}
       </span>
       {sentence.after}
