@@ -95,6 +95,8 @@ export function SentenceGamePage({
   const [answer, setAnswer] = useState('')
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const [round, setRound] = useState(sentenceIndex === null ? 0 : 1)
+  const [correctStreak, setCorrectStreak] = useState(0)
+  const [earnedCoins, setEarnedCoins] = useState(10)
 
   const finishPageTurn = () => {
     if (nextPageIndex === null) return
@@ -126,8 +128,14 @@ export function SentenceGamePage({
       setNextPageIndex(nextIndex)
       setBag(remaining)
       setFeedback('correct')
-      addCoins(10)
+      const nextStreak = correctStreak + 1
+      const reward = 10 + Math.floor(nextStreak / 10) * 5
+      setCorrectStreak(nextStreak)
+      setEarnedCoins(reward)
+      addCoins(reward)
     } else {
+      setCorrectStreak(0)
+      setEarnedCoins(10)
       setFeedback('wrong')
     }
   }
@@ -149,7 +157,8 @@ export function SentenceGamePage({
           <h1>Welches Wort fehlt?</h1>
           <p className="sentence-intro">
             Schreibe das fehlende Wort in die Lücke. Für jeden richtigen Satz
-            gibt es 10 Goldmünzen.
+            gibt es 10 Goldmünzen. Je 10 richtige Sätze in Folge steigt die
+            Belohnung um 5 Goldmünzen.
           </p>
           <div className="open-book-scene" aria-live="polite">
             <div
@@ -242,7 +251,7 @@ export function SentenceGamePage({
           {feedback === 'correct' && (
             <div className="sentence-correct-actions">
               <p className="sentence-feedback correct" aria-live="polite">
-                <Coins size={17} /> Richtig! +10 Goldmünzen
+                <Coins size={17} /> Richtig! +{earnedCoins} Goldmünzen
               </p>
             </div>
           )}
