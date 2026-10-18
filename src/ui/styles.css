@@ -2447,17 +2447,17 @@ button {
     height: 118px;
   }
   .mobile-controls-up {
-    top: 4%;
+    top: 10%;
   }
   .mobile-controls-down {
-    bottom: 16%;
+    bottom: 13%;
   }
   .mobile-digital-controls button {
     position: absolute;
     top: 0;
     left: 35.5%;
-    width: 132px;
-    height: 118px;
+    width: 110px;
+    height: 100px;
     border: 0;
     border-radius: 18px;
     background: transparent;
