@@ -119,6 +119,7 @@ export function SentenceGamePage({
           <p className="sentence-intro">Schreibe das fehlende Wort in die Lücke. Für jeden richtigen Satz gibt es 10 Goldmünzen.</p>
           <div className="open-book-scene" aria-live="polite">
             <div className="open-book-spread">
+              <div className="book-left-back-page" aria-hidden="true" />
               <div className="book-right-page" aria-live="polite">
                 {feedback === 'correct' && nextPageIndex !== null && (
                   <div className="book-next-content" aria-hidden="true">
@@ -127,10 +128,13 @@ export function SentenceGamePage({
                 )}
                 {feedback === 'correct' && current ? (
                   <div className="book-turn-leaf" onAnimationEnd={finishPageTurn}>
-                    <div className="book-turn-front">
-                      <SentenceLine sentence={current} answer={current.missing} />
-                      <span className="book-stamp">Richtig! ✨</span>
+                    <div className="book-turn-face book-turn-face-front">
+                      <div className="book-turn-front">
+                        <SentenceLine sentence={current} answer={current.missing} />
+                        <span className="book-stamp">Richtig! ✨</span>
+                      </div>
                     </div>
+                    <div className="book-turn-face book-turn-face-back" aria-hidden="true" />
                   </div>
                 ) : current ? (
                   <form className="book-answer-form" onSubmit={(event) => { event.preventDefault(); checkAnswer() }}>
