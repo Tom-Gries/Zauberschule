@@ -505,7 +505,7 @@ button {
 .sentence-art {
   background:
     linear-gradient(#21152b44, #21152b66),
-    url('/images/sentence-book-world.png') center 65% / cover;
+    url('/images/sentence-book-reading.png') center / cover;
 }
 .sentence-book {
   display: none;
@@ -545,42 +545,33 @@ button {
 }
 .open-book-spread {
   position: relative;
-  min-height: 0;
-  height: clamp(320px, 52vw, 600px);
+  width: 100%;
+  aspect-ratio: 3 / 2;
   overflow: visible;
   transform-style: preserve-3d;
-  background: url('/images/sentence-book-world.png') center 58% / cover no-repeat;
-  border-radius: 6px;
+  background: url('/images/sentence-book-reading.png') center / 100% 100% no-repeat;
+  border-radius: 8px;
 }
-.open-book-spread::before {
-  content: none;
-}
-.book-left-page,
 .book-right-page {
   position: absolute;
   display: grid;
   min-width: 0;
-  padding: 3% 4%;
   background: transparent;
   color: #4d3027;
   text-shadow: 0 1px 1px #fff4dc88;
 }
-.book-left-page {
-  left: 20%;
-  top: 49%;
-  width: 32%;
-  height: 34%;
-  justify-items: center;
-}
 .book-right-page {
-  left: 47%;
-  top: 49%;
-  width: 32%;
-  height: 34%;
+  left: 50%;
+  top: 15%;
+  width: 47%;
+  height: 69%;
   align-content: center;
   transform-origin: left center;
   transform-style: preserve-3d;
   backface-visibility: visible;
+}
+.book-right-page > .broken-sentence {
+  padding-inline: 8%;
 }
 .book-next-content {
   position: absolute;
@@ -588,7 +579,7 @@ button {
   z-index: 1;
   display: grid;
   align-content: center;
-  padding: 3% 4%;
+  padding: 7% 9%;
 }
 .book-turn-leaf {
   position: absolute;
@@ -596,13 +587,14 @@ button {
   inset: 0;
   display: grid;
   align-content: center;
-  padding: 3% 4%;
-  border-left: 1px solid #9d7045;
-  background: linear-gradient(100deg, #f0d6a4, #fff0d0 48%, #e8c68c);
-  box-shadow: 5px 5px 14px #3a211b66, inset 8px 0 15px #8c582333;
+  padding: 7% 9%;
+  border: 1px solid #c9a56a;
+  border-radius: 3px 12px 10px 2px;
+  background: linear-gradient(100deg, #ebd09b, #fff2d1 17%, #f8e5b9 72%, #e5c487);
+  box-shadow: 7px 6px 16px #38231a66, inset 9px 0 18px #8c582322, inset -5px 0 12px #b8874833;
   transform-origin: left center;
   transform-style: preserve-3d;
-  animation: book-page-turn 1.25s cubic-bezier(.45, .05, .45, .95) forwards;
+  animation: book-page-turn 1.1s cubic-bezier(.5, .05, .5, .95) forwards;
   backface-visibility: visible;
 }
 .book-turn-leaf::after {
@@ -610,9 +602,10 @@ button {
   position: absolute;
   z-index: -1;
   inset: 0;
-  border-left: 1px solid #9d7045;
-  background: linear-gradient(260deg, #f0d6a4, #fff0d0 48%, #e8c68c);
-  box-shadow: inset -8px 0 15px #8c582333;
+  border: 1px solid #c9a56a;
+  border-radius: 12px 3px 2px 10px;
+  background: linear-gradient(260deg, #ebd09b, #fff2d1 17%, #f8e5b9 72%, #e5c487);
+  box-shadow: inset -9px 0 18px #8c582322, inset 5px 0 12px #b8874833;
   transform: rotateY(180deg);
   backface-visibility: hidden;
 }
@@ -622,53 +615,36 @@ button {
 }
 @keyframes book-page-turn {
   0% { transform: rotateY(0); filter: brightness(1); }
-  42% { transform: rotateY(-76deg); filter: brightness(.78); }
+  28% { transform: rotateY(-42deg); filter: brightness(.9); }
+  52% { transform: rotateY(-96deg); filter: brightness(.75); }
+  76% { transform: rotateY(-148deg); filter: brightness(.88); }
   100% { transform: rotateY(-180deg); filter: brightness(1); }
-}
-.book-flourish {
-  margin-top: 8%;
-  color: #b88641;
-  font-size: clamp(30px, 6vw, 58px);
-  text-shadow: 0 2px 8px #ad783333;
-}
-.page-decoration {
-  position: absolute;
-  top: 3%;
-  right: 5%;
-  color: #9c6734cc;
-}
-.book-page-number {
-  position: absolute;
-  right: 5%;
-  bottom: 4%;
-  color: #9a744e;
-  font: 12px Georgia, serif;
 }
 .broken-sentence {
   align-self: center;
   width: 100%;
   margin: 0;
-  color: #392517;
-  font: 600 clamp(16px, 2.2vw, 24px)/1.65 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
+  color: #302016;
+  font: 600 clamp(19px, 3vw, 32px)/1.7 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
   letter-spacing: .015em;
   text-align: center;
   text-wrap: pretty;
   text-shadow: 0 .5px #3c241c66;
 }
 .word-gap {
-  display: inline-flex;
-  min-width: 3.5em;
-  height: .95em;
-  align-items: flex-end;
-  justify-content: center;
-  margin: 0 .2em;
-  border-bottom: 1.5px solid #58351f;
+  display: inline-block;
+  width: 3.3em;
+  height: .88em;
+  margin: 0 .16em;
+  border-bottom: 2px solid #43291b;
   color: #41633d;
   font-weight: 600;
   text-align: center;
   vertical-align: baseline;
 }
 .word-gap.is-solved {
+  height: auto;
+  min-height: .88em;
   border-bottom-color: #41633d;
 }
 .book-stamp {
@@ -740,22 +716,21 @@ button {
   .sentence-layout {
     margin-top: 0;
   }
-  .open-book-spread {
-    height: clamp(300px, 66vw, 430px);
-  }
   .book-right-page {
-    left: 51%;
-    width: 38%;
+    left: 50%;
+    top: 15%;
+    width: 47%;
+    height: 69%;
+    padding: 0;
+  }
+  .broken-sentence {
+    font-size: clamp(16px, 4vw, 24px);
   }
 }
 @media (max-width: 430px) {
-  .book-left-page {
-    left: 8%;
-    width: 43%;
-  }
   .book-right-page {
     left: 49%;
-    width: 50%;
+    width: 48%;
   }
 }
 

@@ -110,10 +110,6 @@ export function SentenceGamePage({
           <p className="sentence-intro">Schreibe das fehlende Wort in die Lücke. Für jeden richtigen Satz gibt es 10 Goldmünzen.</p>
           <div className="open-book-scene" aria-live="polite">
             <div className="open-book-spread">
-              <div className="book-left-page" aria-hidden="true">
-                <span className="book-flourish" aria-hidden="true">✦</span>
-                <span className="book-page-number">✧</span>
-              </div>
               <div className="book-right-page" aria-live="polite">
                 {feedback === 'correct' && nextPageIndex !== null && (
                   <div className="book-next-content" aria-hidden="true">
@@ -130,7 +126,6 @@ export function SentenceGamePage({
                 ) : (
                   <p className="broken-sentence">Bereit für deinen ersten Satz?</p>
                 )}
-                <span className="book-page-number">{round}</span>
               </div>
             </div>
           </div>
