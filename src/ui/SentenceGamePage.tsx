@@ -104,7 +104,7 @@ export function SentenceGamePage({
         <CoinPill amount={coins} />
       </header>
       <section className="sentence-layout">
-        <div className="sentence-main panel">
+        <div className="sentence-main">
           <p className="eyebrow"><Sparkles size={15} /> DAS VERZAUBERTE SATZBUCH</p>
           <h1>Welches Wort fehlt?</h1>
           <p className="sentence-intro">Schreibe das fehlende Wort in die Lücke. Für jeden richtigen Satz gibt es 10 Goldmünzen.</p>
@@ -118,8 +118,10 @@ export function SentenceGamePage({
                 )}
                 {feedback === 'correct' && current ? (
                   <div className="book-turn-leaf" onAnimationEnd={finishPageTurn}>
-                    <SentenceLine sentence={current} answer={current.missing} />
-                    <span className="book-stamp">Richtig! ✨</span>
+                    <div className="book-turn-front">
+                      <SentenceLine sentence={current} answer={current.missing} />
+                      <span className="book-stamp">Richtig! ✨</span>
+                    </div>
                   </div>
                 ) : current ? (
                   <SentenceLine sentence={current} ariaLabel={`Satz: ${current.before} fehlendes Wort ${current.after}`} />
