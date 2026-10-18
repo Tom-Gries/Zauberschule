@@ -1601,6 +1601,17 @@ button {
   }
 }
 @media (max-width: 680px) {
+  .sentence-main > .eyebrow,
+  .sentence-main > h1,
+  .sentence-main > .sentence-intro {
+    display: none;
+  }
+  .sentence-layout {
+    margin-top: 0;
+  }
+  .sentence-main {
+    padding-top: 0;
+  }
   .world-page {
     padding: 13px 13px 19px;
   }
