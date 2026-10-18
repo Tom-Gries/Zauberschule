@@ -2274,10 +2274,20 @@ button {
 }
 @media (max-width: 680px) {
   .wizard-page {
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: 100dvh;
+    min-height: 100dvh;
+    padding: 0;
+    overflow: hidden;
   }
   .wizard-page .game-topbar {
+    position: absolute;
+    z-index: 5;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    right: 16px;
+    left: 16px;
+    width: auto;
+    height: 56px;
+    margin: 0;
     flex: 0 0 auto;
   }
   .wizard-mobile-game {
@@ -2302,17 +2312,17 @@ button {
     display: block;
     flex: 0 0 auto;
     align-self: center;
-    width: min(1024px, calc(100vw - 20px));
+    width: 100vw;
     min-width: 0;
-    max-width: 1024px;
-    height: min(1536px, calc(100svh - 90px));
+    max-width: none;
+    height: 100dvh;
     min-height: 420px;
     margin: 0 auto;
     overflow: hidden;
     isolation: isolate;
-    border: 2px solid #bd8540;
-    border-radius: 16px;
-    box-shadow: 0 12px 28px #100a1dcc, inset 0 0 0 1px #ffe0a444;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
   .wizard-mobile-scene {
     position: absolute;
