@@ -2358,7 +2358,7 @@ button {
   }
   .wizard-mobile-dream {
     left: 312px;
-    top: 52px;
+    top: 100px;
     width: 400px;
     height: 400px;
     display: grid;
@@ -2377,8 +2377,8 @@ button {
     height: 330px;
   }
   .wizard-mobile-dream.is-digital > .digital-shell {
-    width: 380px;
-    height: 254px;
+    width: 760px;
+    height: 508px;
   }
   .wizard-mobile-dream.is-digital .digital-shell-display {
     left: 14%;
@@ -2398,7 +2398,7 @@ button {
     top: auto;
     bottom: 60px;
     width: 560px;
-    height: 374px;
+    height: 840px;
   }
   .wizard-mobile-answer {
     display: block;
@@ -2431,7 +2431,7 @@ button {
     width: 25px;
   }
   .wizard-mobile-dream.is-digital > .digital-shell .digital-clock {
-    --digit-height: 76px;
+    --digit-height: 152px;
     gap: 5px;
   }
   .wizard-mobile-dream.is-digital .digital-colon {
@@ -2440,19 +2440,21 @@ button {
   .mobile-digital-controls {
     position: absolute;
     z-index: 2;
-    left: 7%;
-    display: flex;
-    justify-content: space-evenly;
-    width: 86%;
-    gap: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 118px;
   }
   .mobile-controls-up {
-    top: 15%;
+    top: 4%;
   }
   .mobile-controls-down {
-    bottom: 13%;
+    bottom: 16%;
   }
   .mobile-digital-controls button {
+    position: absolute;
+    top: 0;
+    left: 35.5%;
     width: 132px;
     height: 118px;
     border: 0;
@@ -2464,6 +2466,10 @@ button {
     text-shadow: 0 3px 5px #341605, 0 0 10px #ffca52;
     cursor: pointer;
     touch-action: manipulation;
+    transform: translateX(-50%);
+  }
+  .mobile-digital-controls button + button {
+    left: 64.5%;
   }
   .mobile-digital-controls button:focus-visible {
     outline: 4px solid #fff2a9;
@@ -2473,17 +2479,17 @@ button {
   .mobile-answer-analog-clock {
     position: absolute;
     z-index: 1;
-    left: 60px;
-    top: -6px;
-    width: 440px;
-    height: 440px;
+    left: -140px;
+    top: 0;
+    width: 840px;
+    height: 840px;
     display: grid;
     place-items: center;
     filter: drop-shadow(0 3px 5px #140a08);
   }
   .mobile-answer-analog-clock > .analog-clock-shell {
-    width: 440px;
-    height: 440px;
+    width: 840px;
+    height: 840px;
   }
   .mobile-auto-check {
     display: none;
