@@ -558,7 +558,7 @@ button {
 .book-cover {
   position: absolute;
   z-index: 0;
-  inset: 0 0 3.5%;
+  inset: 0;
   border: 2px solid #653719;
   border-radius: 2.6% 2.6% 3.2% 3.2%;
   background:
@@ -572,7 +572,7 @@ button {
 .book-page-stack {
   position: absolute;
   z-index: 1;
-  inset: 3.2% 2.8% 10%;
+  inset: 3.2%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   transform-style: preserve-3d;
@@ -641,33 +641,17 @@ button {
   position: absolute;
   z-index: 4;
   top: 3.2%;
-  bottom: 10%;
+  bottom: 3.2%;
   left: 49%;
   width: 2%;
   pointer-events: none;
   background: linear-gradient(90deg, #6e3d20aa, #fff0c366 45%, #70421f77);
   filter: blur(1px);
 }
-.book-fore-edge {
-  position: absolute;
-  z-index: 5;
-  right: 2.8%;
-  bottom: 7.4%;
-  left: 2.8%;
-  height: 2.2%;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    180deg,
-    #f2d6a6 0 2px,
-    #a96b33 2px 3px,
-    #f7e4bc 3px 4px
-  );
-  box-shadow: 0 3px 2px #30170dc9;
-}
 .book-right-page {
   text-shadow: 0 1px 1px #fff4dc88;
 }
-.book-right-page > .broken-sentence {
+.book-right-page .broken-sentence {
   position: relative;
   z-index: 2;
   max-width: none;
@@ -820,9 +804,8 @@ button {
     'Comic Sans MS',
     cursive;
   letter-spacing: 0.01em;
-  text-align: left;
-  text-indent: 1.15em;
-  text-wrap: pretty;
+  text-align: center;
+  text-wrap: balance;
   text-shadow: 0 0.35px #3c241c55;
 }
 .word-gap {

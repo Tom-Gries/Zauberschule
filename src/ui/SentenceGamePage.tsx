@@ -226,7 +226,6 @@ export function SentenceGamePage({
                 </div>
               </div>
               <div className="book-gutter" aria-hidden="true" />
-              <div className="book-fore-edge" aria-hidden="true" />
             </div>
           </div>
           {feedback === 'wrong' && (
