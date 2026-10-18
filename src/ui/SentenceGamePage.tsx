@@ -152,16 +152,16 @@ export function SentenceGamePage({
             gibt es 10 Goldmünzen.
           </p>
           <div className="open-book-scene" aria-live="polite">
-            <div className="open-book-spread">
+            <div
+              className="open-book-spread"
+              onClick={(event) => {
+                event.currentTarget
+                  .querySelector<HTMLInputElement>('.word-gap-input')
+                  ?.focus()
+              }}
+            >
               <div className="book-cover" aria-hidden="true" />
-              <div
-                className="book-page-stack"
-                onClick={(event) => {
-                  event.currentTarget
-                    .querySelector<HTMLInputElement>(".word-gap-input")
-                    ?.focus()
-                }}
-              >
+              <div className="book-page-stack">
                 <div
                   className="book-static-page book-left-page"
                   aria-hidden="true"
