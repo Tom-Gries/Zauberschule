@@ -2374,8 +2374,8 @@ button {
     display: none;
   }
   .wizard-mobile-dream.is-analog > .analog-clock-shell {
-    width: 508px;
-    height: 508px;
+    width: 760px;
+    height: 760px;
   }
   .wizard-mobile-dream.is-digital > .digital-shell {
     width: 760px;
