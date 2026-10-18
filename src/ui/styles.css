@@ -648,29 +648,28 @@ button {
   align-self: center;
   width: 100%;
   margin: 0;
-  color: #4f3523;
-  font: clamp(16px, 2.2vw, 24px)/1.55 Georgia, 'Times New Roman', serif;
+  color: #392517;
+  font: 600 clamp(16px, 2.2vw, 24px)/1.65 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
+  letter-spacing: .015em;
   text-align: center;
   text-wrap: pretty;
+  text-shadow: 0 .5px #3c241c66;
 }
 .word-gap {
   display: inline-flex;
-  min-width: 3.1em;
-  min-height: 1.05em;
-  align-items: center;
+  min-width: 3.5em;
+  height: .95em;
+  align-items: flex-end;
   justify-content: center;
-  margin: 0 .16em;
-  border-bottom: 2px solid #a36b35;
+  margin: 0 .2em;
+  border-bottom: 1.5px solid #58351f;
   color: #41633d;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
-}
-.word-placeholder {
-  color: #b17b38;
-  font-size: .72em;
+  vertical-align: baseline;
 }
 .word-gap.is-solved {
-  border-bottom-color: transparent;
+  border-bottom-color: #41633d;
 }
 .book-stamp {
   justify-self: end;

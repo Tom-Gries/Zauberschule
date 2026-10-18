@@ -35,7 +35,7 @@ function SentenceLine({
     <p className="broken-sentence" aria-label={ariaLabel}>
       {sentence.before}
       <span className={`word-gap ${answer ? 'is-solved' : ''}`}>
-        {answer ?? <span className="word-placeholder" aria-hidden="true">✧</span>}
+        {answer}
       </span>
       {sentence.after}
     </p>
