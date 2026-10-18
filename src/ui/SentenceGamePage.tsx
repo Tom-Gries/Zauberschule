@@ -87,9 +87,9 @@ export function SentenceGamePage({
   }
 
   const current = sentenceIndex === null ? null : sentences[sentenceIndex]
-  const checkAnswer = () => {
-    if (!current || feedback === 'correct' || !answer.trim()) return
-    if (answer.trim().toLocaleLowerCase('de') === current.missing.toLocaleLowerCase('de')) {
+  const checkAnswer = (value = answer) => {
+    if (!current || feedback === 'correct' || !value.trim()) return
+    if (value.trim().toLocaleLowerCase('de') === current.missing.toLocaleLowerCase('de')) {
       let available = bag.filter((index) => index !== sentenceIndex)
       if (!available.length) {
         available = shuffled(sentences.map((_, index) => index).filter((index) => index !== sentenceIndex))
@@ -138,7 +138,13 @@ export function SentenceGamePage({
                       sentence={current}
                       ariaLabel={`Satz: ${current.before} fehlendes Wort ${current.after}`}
                       inputValue={answer}
-                      onInputChange={(value) => { setAnswer(value); setFeedback(null) }}
+                      onInputChange={(value) => {
+                        setAnswer(value)
+                        setFeedback(null)
+                        if (current && value.trim().toLocaleLowerCase('de') === current.missing.toLocaleLowerCase('de')) {
+                          checkAnswer(value)
+                        }
+                      }}
                     />
                   </form>
                 ) : (
