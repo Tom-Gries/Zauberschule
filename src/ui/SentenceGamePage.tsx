@@ -93,7 +93,7 @@ export function SentenceGamePage({
   )
   const [nextPageIndex, setNextPageIndex] = useState<number | null>(null)
   const [answer, setAnswer] = useState('')
-  const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
+  const [feedback, setFeedback] = useState<'correct' | null>(null)
   const [round, setRound] = useState(sentenceIndex === null ? 0 : 1)
   const [correctStreak, setCorrectStreak] = useState(0)
   const [earnedCoins, setEarnedCoins] = useState(10)
@@ -111,33 +111,30 @@ export function SentenceGamePage({
   const checkAnswer = (value = answer) => {
     if (!current || feedback === 'correct' || !value.trim()) return
     if (
-      value.trim().toLocaleLowerCase('de') ===
+      value.trim().toLocaleLowerCase('de') !==
       current.missing.toLocaleLowerCase('de')
-    ) {
-      let available = bag.filter((index) => index !== sentenceIndex)
-      if (!available.length) {
-        available = shuffled(
-          sentences
-            .map((_, index) => index)
-            .filter((index) => index !== sentenceIndex),
-        )
-      }
-      if (!available.length)
-        available = shuffled(sentences.map((_, index) => index))
-      const [nextIndex, ...remaining] = available
-      setNextPageIndex(nextIndex)
-      setBag(remaining)
-      setFeedback('correct')
-      const nextStreak = correctStreak + 1
-      const reward = 10 + Math.floor(nextStreak / 10) * 5
-      setCorrectStreak(nextStreak)
-      setEarnedCoins(reward)
-      addCoins(reward)
-    } else {
-      setCorrectStreak(0)
-      setEarnedCoins(10)
-      setFeedback('wrong')
+    )
+      return
+
+    let available = bag.filter((index) => index !== sentenceIndex)
+    if (!available.length) {
+      available = shuffled(
+        sentences
+          .map((_, index) => index)
+          .filter((index) => index !== sentenceIndex),
+      )
     }
+    if (!available.length)
+      available = shuffled(sentences.map((_, index) => index))
+    const [nextIndex, ...remaining] = available
+    setNextPageIndex(nextIndex)
+    setBag(remaining)
+    setFeedback('correct')
+    const nextStreak = correctStreak + 1
+    const reward = 10 + Math.floor(nextStreak / 10) * 5
+    setCorrectStreak(nextStreak)
+    setEarnedCoins(reward)
+    addCoins(reward)
   }
 
   return (
@@ -157,8 +154,8 @@ export function SentenceGamePage({
           <h1>Welches Wort fehlt?</h1>
           <p className="sentence-intro">
             Schreibe das fehlende Wort in die Lücke. Für jeden richtigen Satz
-            gibt es 10 Goldmünzen. Je 10 richtige Sätze in Folge steigt die
-            Belohnung um 5 Goldmünzen.
+            gibt es 10 Goldmünzen. Nach jeweils 10 richtigen Sätzen in Folge
+            steigt die Belohnung um 5 Goldmünzen.
           </p>
           <div className="open-book-scene" aria-live="polite">
             <div
@@ -243,11 +240,6 @@ export function SentenceGamePage({
               <div className="book-gutter" aria-hidden="true" />
             </div>
           </div>
-          {feedback === 'wrong' && (
-            <p className="sentence-feedback wrong" aria-live="polite">
-              Noch nicht ganz. Versuch es noch einmal!
-            </p>
-          )}
           {feedback === 'correct' && (
             <div className="sentence-correct-actions">
               <p className="sentence-feedback correct" aria-live="polite">
