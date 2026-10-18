@@ -573,11 +573,12 @@ button {
   justify-items: center;
 }
 .book-right-page {
-  left: 52%;
+  left: 47%;
   top: 49%;
-  width: 34%;
+  width: 32%;
   height: 34%;
   align-content: center;
+  overflow: hidden;
   transform-origin: left center;
   transform-style: preserve-3d;
   backface-visibility: visible;
@@ -631,13 +632,15 @@ button {
 }
 .broken-sentence {
   align-self: center;
+  width: 100%;
   margin: 0;
-  font: clamp(17px, 2.45vw, 27px)/1.42 Georgia, serif;
+  font: clamp(15px, 2.1vw, 24px)/1.42 Georgia, serif;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 .word-gap {
   display: inline-block;
-  min-width: 4.5em;
+  min-width: 3.4em;
   margin: 0 .14em;
   border-bottom: 3px solid #b65e38;
   color: #793c27;
@@ -720,6 +723,10 @@ button {
   .open-book-spread {
     height: clamp(300px, 66vw, 430px);
   }
+  .book-right-page {
+    left: 51%;
+    width: 38%;
+  }
 }
 @media (max-width: 430px) {
   .book-left-page {
@@ -727,8 +734,8 @@ button {
     width: 43%;
   }
   .book-right-page {
-    left: 51%;
-    width: 41%;
+    left: 49%;
+    width: 50%;
   }
 }
 
