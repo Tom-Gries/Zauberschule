@@ -181,7 +181,38 @@ export function SentenceGamePage({
                       <SentenceLine sentence={sentences[nextPageIndex]} />
                     </div>
                   )}
-                  {feedback === 'correct' && current ? (
+                  {current ? (
+                    <form
+                      className={`book-answer-form ${feedback === 'correct' ? 'is-turning' : ''}`}
+                      onSubmit={(event) => {
+                        event.preventDefault()
+                        checkAnswer()
+                      }}
+                    >
+                      <SentenceLine
+                        sentence={current}
+                        ariaLabel={`Satz: ${current.before} fehlendes Wort ${current.after}`}
+                        inputValue={answer}
+                        onInputChange={(value) => {
+                          if (feedback === 'correct') return
+                          setAnswer(value)
+                          setFeedback(null)
+                          if (
+                            current &&
+                            value.trim().toLocaleLowerCase('de') ===
+                              current.missing.toLocaleLowerCase('de')
+                          ) {
+                            checkAnswer(value)
+                          }
+                        }}
+                      />
+                    </form>
+                  ) : (
+                    <p className="broken-sentence">
+                      Noch keine Sätze vorhanden.
+                    </p>
+                  )}
+                  {feedback === 'correct' && current && (
                     <div
                       className="book-turn-leaf"
                       onAnimationEnd={(event) => {
@@ -206,35 +237,6 @@ export function SentenceGamePage({
                         aria-hidden="true"
                       />
                     </div>
-                  ) : current ? (
-                    <form
-                      className="book-answer-form"
-                      onSubmit={(event) => {
-                        event.preventDefault()
-                        checkAnswer()
-                      }}
-                    >
-                      <SentenceLine
-                        sentence={current}
-                        ariaLabel={`Satz: ${current.before} fehlendes Wort ${current.after}`}
-                        inputValue={answer}
-                        onInputChange={(value) => {
-                          setAnswer(value)
-                          setFeedback(null)
-                          if (
-                            current &&
-                            value.trim().toLocaleLowerCase('de') ===
-                              current.missing.toLocaleLowerCase('de')
-                          ) {
-                            checkAnswer(value)
-                          }
-                        }}
-                      />
-                    </form>
-                  ) : (
-                    <p className="broken-sentence">
-                      Noch keine Sätze vorhanden.
-                    </p>
                   )}
                 </div>
               </div>

@@ -792,6 +792,9 @@ button {
 .book-answer-form {
   display: contents;
 }
+.book-answer-form.is-turning .broken-sentence {
+  opacity: 0;
+}
 .word-gap-input {
   position: absolute;
   z-index: 1;
