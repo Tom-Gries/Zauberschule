@@ -575,6 +575,7 @@ button {
   inset: 3.2%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  cursor: text;
   transform-style: preserve-3d;
 }
 .book-static-page,
