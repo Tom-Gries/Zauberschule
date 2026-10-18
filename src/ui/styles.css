@@ -2480,7 +2480,7 @@ button {
   .mobile-answer-analog-clock {
     position: absolute;
     z-index: 1;
-    left: -100px;
+    left: -140px;
     top: 0;
     width: 840px;
     height: 840px;
