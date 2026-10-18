@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, Coins, Sparkles } from 'lucide-react'
+import { ArrowLeft, Coins, Sparkles } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { Link } from 'react-router'
 import sentenceEntries from '../game/sentences.json'
@@ -22,6 +22,26 @@ function shuffled(items: number[]): number[] {
   return result
 }
 
+function SentenceLine({
+  sentence,
+  answer,
+  ariaLabel,
+}: {
+  sentence: Sentence
+  answer?: string
+  ariaLabel?: string
+}) {
+  return (
+    <p className="broken-sentence" aria-label={ariaLabel}>
+      {sentence.before}
+      <span className={`word-gap ${answer ? 'is-solved' : ''}`}>
+        {answer ?? <span className="word-placeholder" aria-hidden="true">✧</span>}
+      </span>
+      {sentence.after}
+    </p>
+  )
+}
+
 export function SentenceGamePage({
   coins,
   addCoins,
@@ -31,6 +51,7 @@ export function SentenceGamePage({
 }) {
   const [bag, setBag] = useState<number[]>([])
   const [sentenceIndex, setSentenceIndex] = useState<number | null>(null)
+  const [nextPageIndex, setNextPageIndex] = useState<number | null>(null)
   const [answer, setAnswer] = useState('')
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const [round, setRound] = useState(0)
@@ -47,10 +68,27 @@ export function SentenceGamePage({
     setRound((value) => value + 1)
   }, [bag, sentences])
 
+  const finishPageTurn = () => {
+    if (nextPageIndex === null) return
+    setSentenceIndex(nextPageIndex)
+    setNextPageIndex(null)
+    setAnswer('')
+    setFeedback(null)
+    setRound((value) => value + 1)
+  }
+
   const current = sentenceIndex === null ? null : sentences[sentenceIndex]
   const checkAnswer = () => {
     if (!current || feedback === 'correct' || !answer.trim()) return
     if (answer.trim().toLocaleLowerCase('de') === current.missing.toLocaleLowerCase('de')) {
+      let available = bag.filter((index) => index !== sentenceIndex)
+      if (!available.length) {
+        available = shuffled(sentences.map((_, index) => index).filter((index) => index !== sentenceIndex))
+      }
+      if (!available.length) available = shuffled(sentences.map((_, index) => index))
+      const [nextIndex, ...remaining] = available
+      setNextPageIndex(nextIndex)
+      setBag(remaining)
       setFeedback('correct')
       addCoins(10)
     } else {
@@ -72,26 +110,26 @@ export function SentenceGamePage({
           <p className="sentence-intro">Schreibe das fehlende Wort in die Lücke. Für jeden richtigen Satz gibt es 10 Goldmünzen.</p>
           <div className="open-book-scene" aria-live="polite">
             <div className="open-book-spread">
-              <div className="book-left-page">
-                <BookOpen className="page-decoration" size={23} aria-hidden="true" />
-                <span className="book-chapter">DAS SATZBUCH</span>
+              <div className="book-left-page" aria-hidden="true">
                 <span className="book-flourish" aria-hidden="true">✦</span>
                 <span className="book-page-number">✧</span>
               </div>
-              <div
-                className={`book-right-page ${feedback === 'correct' ? 'page-turning' : ''}`}
-                onAnimationEnd={() => {
-                  if (feedback === 'correct') nextSentence()
-                }}
-              >
-                {current ? (
-                  <p className="broken-sentence" aria-label={`Satz: ${current.before} fehlendes Wort ${current.after}`}>
-                    {current.before}<span className="word-gap">{feedback === 'correct' ? current.missing : '　　　　'}</span>{current.after}
-                  </p>
+              <div className="book-right-page" aria-live="polite">
+                {feedback === 'correct' && nextPageIndex !== null && (
+                  <div className="book-next-content" aria-hidden="true">
+                    <SentenceLine sentence={sentences[nextPageIndex]} />
+                  </div>
+                )}
+                {feedback === 'correct' && current ? (
+                  <div className="book-turn-leaf" onAnimationEnd={finishPageTurn}>
+                    <SentenceLine sentence={current} answer={current.missing} />
+                    <span className="book-stamp">Richtig! ✨</span>
+                  </div>
+                ) : current ? (
+                  <SentenceLine sentence={current} ariaLabel={`Satz: ${current.before} fehlendes Wort ${current.after}`} />
                 ) : (
                   <p className="broken-sentence">Bereit für deinen ersten Satz?</p>
                 )}
-                {feedback === 'correct' && <span className="book-stamp">Richtig! ✨</span>}
                 <span className="book-page-number">{round}</span>
               </div>
             </div>
@@ -108,7 +146,6 @@ export function SentenceGamePage({
           {feedback === 'correct' && (
             <div className="sentence-correct-actions">
               <p className="sentence-feedback correct" aria-live="polite"><Coins size={17} /> Richtig! +10 Goldmünzen</p>
-              <button className="play-button" onClick={nextSentence}>Sofort weiter <Sparkles size={16} /></button>
             </div>
           )}
           {!current && sentences.length > 0 && <button className="play-button begin-button" onClick={nextSentence}>Satz beginnen <Sparkles size={16} /></button>}
