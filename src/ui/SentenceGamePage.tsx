@@ -131,7 +131,14 @@ export function SentenceGamePage({
                   </div>
                 )}
                 {feedback === 'correct' && current ? (
-                  <div className="book-turn-leaf" onAnimationEnd={finishPageTurn}>
+                  <div
+                    className="book-turn-leaf"
+                    onAnimationEnd={(event) => {
+                      if (event.target === event.currentTarget && event.animationName === 'book-page-turn') {
+                        finishPageTurn()
+                      }
+                    }}
+                  >
                     <div className="book-turn-face book-turn-face-front">
                       <div className="book-turn-front">
                         <SentenceLine sentence={current} answer={current.missing} />
