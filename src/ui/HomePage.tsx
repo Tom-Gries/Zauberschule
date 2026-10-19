@@ -54,6 +54,28 @@ export function HomePage({
         </div>
         <div className="game-grid">
           <article className="game-card featured-card">
+            <div className="card-art potion-card-art" aria-hidden="true">
+              <img src="/images/potion-shop.png" alt="" />
+              <img src="/images/potion-1.png" alt="" />
+            </div>
+            <div className="game-card-copy">
+              <div className="card-kicker">MATHE · MENGEN ERKENNEN</div>
+              <h3>Luisas Zaubertrankladen</h3>
+              <p>
+                Zähle die Zaubertränke deiner Kunden und bediene die magische
+                Kasse!
+              </p>
+              <div className="card-bottom">
+                <span className="difficulty">
+                  <Star size={14} fill="currentColor" /> Von 1 bis 200
+                </span>
+                <Link className="play-button" to="/spiele/zaubertrankladen">
+                  Spielen <ArrowRight size={17} />
+                </Link>
+              </div>
+            </div>
+          </article>
+          <article className="game-card featured-card">
             <div className="card-art monster-art" aria-hidden="true">
               <div className="monster-orb" />
               <span className="art-sparkle sparkle-one">✦</span>

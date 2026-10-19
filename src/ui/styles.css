@@ -2963,3 +2963,462 @@ button {
     font-size: 54px;
   }
 }
+.potion-heading {
+  max-width: 1380px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+.potion-heading h1 {
+  font:
+    700 clamp(27px, 4vw, 44px) Georgia,
+    serif;
+  margin: 10px 0;
+  color: #ffe3a3;
+}
+.potion-heading p {
+  color: var(--muted);
+}
+.potion-heading .eyebrow {
+  justify-content: center;
+}
+.potion-progress {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+.potion-progress span {
+  width: 22px;
+  height: 6px;
+  border-radius: 8px;
+  background: #65506e;
+}
+.potion-progress .filled {
+  background: var(--gold);
+}
+.potion-layout {
+  max-width: 1380px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 24px;
+  align-items: start;
+}
+.potion-shop {
+  min-height: 650px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    linear-gradient(#17112722, #17112755),
+    url('/images/potion-shop.png') center/cover;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.potion-customer {
+  height: 310px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.potion-customer img {
+  height: 100%;
+  width: 190px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 12px #20112588);
+}
+.potion-customer p {
+  max-width: 220px;
+  padding: 18px;
+  border-radius: 22px 22px 22px 0;
+  background: #fff4d8;
+  color: #472a37;
+  font-weight: 700;
+}
+.potion-counter {
+  margin: 0 20px 20px;
+  padding: 15px;
+  min-height: 270px;
+  border: 8px solid #9a613a;
+  border-top-color: #d19960;
+  border-radius: 22px 22px 45px 45px;
+  background: repeating-linear-gradient(0deg, #794928 0 4px, #88542f 4px 8px);
+  box-shadow:
+    0 12px 15px #100b22aa,
+    inset 0 4px 12px #24132277;
+}
+.potion-counter h2 {
+  font-size: 16px;
+  margin: 0 0 12px;
+  text-align: center;
+  color: #ffe2ac;
+}
+.potion-packs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  overflow: visible;
+}
+.potion-pack {
+  position: relative;
+  width: 86px;
+  height: 94px;
+  background: #ffdf9c16;
+  border-radius: 12px;
+}
+.potion-pack img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.potion-pack span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  min-width: 27px;
+  text-align: center;
+  background: #301b3b;
+  color: #ffe3ac;
+  border: 1px solid #e8ba69;
+  border-radius: 12px;
+  font-weight: 800;
+}
+.potion-register {
+  padding: 24px;
+  border: 3px solid #b88a53;
+  box-shadow:
+    0 10px 0 #583856,
+    0 20px 40px #10091c88;
+}
+.potion-register h2 {
+  font-family: Georgia, serif;
+  margin-top: 4px;
+}
+.potion-register label {
+  font-size: 13px;
+  color: var(--muted);
+}
+.potion-display {
+  display: block;
+  width: 100%;
+  min-height: 82px;
+  margin: 9px 0 20px;
+  padding: 8px 15px;
+  font: 700 44px monospace;
+  text-align: right;
+  color: #d7ffd7;
+  background: #152c29;
+  border: 4px solid #997a61;
+  border-radius: 10px;
+}
+.potion-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.potion-keypad button {
+  display: grid;
+  place-items: center;
+  min-height: 55px;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 1px solid #a880bd;
+  background: linear-gradient(#67467f, #432c5b);
+  box-shadow: 0 4px 0 #20152f;
+  cursor: pointer;
+}
+.potion-keypad button:active {
+  transform: translateY(2px);
+}
+.potion-submit {
+  margin-top: 18px;
+  width: 100%;
+  justify-content: center;
+}
+.potion-submit:disabled,
+.potion-keypad button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.potion-feedback {
+  min-height: 65px;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #eadac4;
+}
+.potion-feedback.success {
+  color: #acffc4;
+  font-weight: 700;
+}
+.potion-next {
+  font-size: 14px;
+  color: #ffdfa0;
+}
+.potion-legend {
+  max-width: 1380px;
+  margin: 26px auto 0;
+  padding: 20px;
+  text-align: center;
+}
+.potion-legend h2 {
+  font:
+    700 21px Georgia,
+    serif;
+  margin: 0;
+}
+.potion-legend > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.potion-legend figure {
+  margin: 10px 0;
+  width: 120px;
+}
+.potion-legend img {
+  height: 90px;
+  width: 100%;
+  object-fit: contain;
+}
+.potion-legend p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.potion-card-art {
+  position: relative;
+  overflow: hidden;
+}
+.potion-card-art img:first-child {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.potion-card-art img:last-child {
+  position: absolute;
+  height: 90%;
+  width: 40%;
+  object-fit: contain;
+  left: 30%;
+  bottom: 0;
+  filter: drop-shadow(0 0 20px #82efb5);
+}
+.customer-entering .potion-customer {
+  animation: potion-walk-in 1.3s ease-out both;
+}
+.customer-entering .potion-counter {
+  opacity: 0;
+}
+.customer-shopping .potion-counter {
+  transition: opacity 0.3s;
+}
+.customer-leaving .potion-customer,
+.customer-leaving .potion-counter {
+  animation: potion-walk-out 1.4s ease-in both;
+}
+@keyframes potion-walk-in {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes potion-walk-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+@media (max-width: 800px) {
+  .potion-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .potion-shop {
+    min-height: 480px;
+  }
+  .potion-customer {
+    height: 240px;
+  }
+  .potion-customer img {
+    width: 140px;
+  }
+  .potion-counter {
+    min-height: 200px;
+    margin: 0 10px 10px;
+  }
+  .potion-register {
+    width: 100%;
+    max-width: 440px;
+    justify-self: center;
+  }
+  .potion-pack {
+    width: 70px;
+    height: 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .customer-entering .potion-customer,
+  .customer-leaving .potion-customer,
+  .customer-leaving .potion-counter {
+    animation-duration: 0.01s;
+  }
+}
+.customer-entering .potion-customer img,
+.customer-leaving .potion-customer img {
+  animation: potion-step 0.24s ease-in-out infinite alternate;
+}
+@keyframes potion-step {
+  from {
+    transform: translateY(0) rotate(-2deg);
+  }
+  to {
+    transform: translateY(-7px) rotate(2deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .customer-entering .potion-customer img,
+  .customer-leaving .potion-customer img {
+    animation: none;
+  }
+}
+.potion-packs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-height: none;
+  flex-wrap: wrap;
+}
+.potion-pack-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  gap: 14px;
+  padding: 8px;
+  border-bottom: 1px solid #edc58844;
+}
+.potion-pack-group.group-1 {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 72px));
+  gap: clamp(4px, 1vw, 12px);
+  justify-content: center;
+}
+.potion-pack {
+  width: 240px;
+  max-width: 100%;
+  flex: 0 1 240px;
+  height: auto;
+  padding: 8px 8px 22px;
+}
+.potion-quantity {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  padding: 6px;
+  border-radius: 10px;
+  background: #17112766;
+  align-content: center;
+}
+.potion-quantity > div {
+  min-width: 0;
+}
+.potion-quantity img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.potion-quantity .five-divider {
+  border-right: 2px solid #ffe5b9;
+  padding-right: 4px;
+  margin-right: 2px;
+}
+.quantity-5 img {
+  filter: hue-rotate(105deg);
+}
+.quantity-10 img {
+  filter: hue-rotate(175deg);
+}
+.quantity-20 img {
+  filter: hue-rotate(-90deg);
+}
+.quantity-50 img {
+  filter: hue-rotate(-125deg);
+}
+.quantity-100 img {
+  filter: hue-rotate(-65deg);
+}
+.quantity-100 {
+  border: 7px ridge #e7b346;
+  border-radius: 5px;
+  background: #65401c;
+  box-shadow: inset 0 0 0 2px #ffdf85;
+}
+.quantity-100 > div {
+  background: #382513;
+  border-radius: 2px;
+}
+.quantity-100 > div:nth-child(n + 41):nth-child(-n + 50) {
+  padding-bottom: 4px;
+  border-bottom: 2px solid #ffe5b9;
+}
+.potion-legend figure:has(.potion-hundred-crate) {
+  width: 220px;
+}
+.potion-legend .potion-hundred-crate,
+.potion-pack .potion-hundred-crate {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.potion-pack.pack-50 {
+  width: 320px;
+  flex-basis: 320px;
+}
+.potion-legend figure {
+  width: 230px;
+  align-self: end;
+}
+.potion-legend .potion-quantity img {
+  height: auto;
+}
+.potion-legend .quantity-1 {
+  width: 100px;
+  margin: auto;
+}
+.potion-customer-name {
+  display: block;
+  margin-bottom: 8px;
+  color: #784762;
+}
+.pack-1 {
+  width: 100%;
+  padding: 4px 2px 24px;
+  min-width: 0;
+}
+.pack-1 .potion-quantity {
+  padding: 0;
+  background: transparent;
+}
+.potion-legend figure:has(.quantity-50) {
+  width: 380px;
+  max-width: 100%;
+}
+.potion-counter,
+.potion-register,
+.potion-legend figure {
+  min-width: 0;
+}

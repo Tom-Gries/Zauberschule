@@ -12,6 +12,7 @@ import { GamePage } from './GamePage'
 import { HomePage } from './HomePage'
 import { WizardClockPage } from './WizardClockPage'
 import { SentenceGamePage } from './SentenceGamePage'
+import { PotionGamePage } from './PotionGamePage'
 export default function App() {
   const [coins, setCoins] = useState(loadCoins)
   const [wizardUnlocked, setWizardUnlocked] = useState(loadWizardUnlocked)
@@ -49,6 +50,10 @@ export default function App() {
   )
   return (
     <Routes>
+      <Route
+        path="/spiele/zaubertrankladen"
+        element={<PotionGamePage coins={coins} addCoins={addCoins} />}
+      />
       <Route path="/" element={homePage} />
       <Route
         path="/spiele/monster-fuettern"
