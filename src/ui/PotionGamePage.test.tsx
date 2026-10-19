@@ -24,6 +24,7 @@ describe('potion shop customer', () => {
       </MemoryRouter>,
     )
     expect(container.querySelector('.customer-entering')).toBeInTheDocument()
+    fireEvent.click(screen.getByText('Zählhilfe', { selector: 'summary' }))
     expect(
       screen.getByRole('img', { name: 'Elfe Fina kauft Zaubertränke' }),
     ).toHaveAttribute('src', '/images/potion-customer.png')

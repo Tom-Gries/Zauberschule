@@ -239,26 +239,29 @@ export function PotionGamePage({
           )}
         </section>
       </div>
-      <section
-        className="potion-legend panel"
-        aria-label="So viel zählt jedes Bündel"
-      >
-        <h2>Deine Zählhilfe</h2>
-        <div>
-          {[...potionValues].reverse().map((value) => (
-            <figure key={value}>
-              <PotionQuantity value={value} />
-              <figcaption>
-                <strong>{value}</strong> · {colors[value]}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p>
-          Nach jeweils 10 richtigen Käufen wächst dein Zahlenraum: 10 → 20 → 50
-          → 100 → 200. Danach übst du bis 200 weiter.
-        </p>
-      </section>
+      <details className="potion-help">
+        <summary>Zählhilfe</summary>
+        <section
+          className="potion-legend panel"
+          aria-label="So viel zählt jedes Bündel"
+        >
+          <h2>Deine Zählhilfe</h2>
+          <div>
+            {[...potionValues].reverse().map((value) => (
+              <figure key={value}>
+                <PotionQuantity value={value} />
+                <figcaption>
+                  <strong>{value}</strong> · {colors[value]}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <p>
+            Nach jeweils 10 richtigen Käufen wächst dein Zahlenraum: 10 → 20 →
+            50 → 100 → 200. Danach übst du bis 200 weiter.
+          </p>
+        </section>
+      </details>
     </main>
   )
 }
