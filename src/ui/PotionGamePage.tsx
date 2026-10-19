@@ -124,7 +124,7 @@ export function PotionGamePage({
                 : 'Diese Zaubertränke möchte ich kaufen!'}
             </p>
           </div>
-          <div className="potion-counter">
+          <div className="potion-counter" aria-hidden={phase !== 'shopping'}>
             <h2>Der Einkaufskorb</h2>
             <FittedBasket>
               {potionValues

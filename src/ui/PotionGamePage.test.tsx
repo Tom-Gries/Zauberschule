@@ -57,6 +57,10 @@ describe('potion shop customer', () => {
     ).toBeInTheDocument()
     act(() => vi.advanceTimersByTime(1500))
     expect(container.querySelector('.customer-leaving')).toBeInTheDocument()
+    expect(container.querySelector('.potion-counter')).toHaveAttribute(
+      'aria-hidden',
+      'true',
+    )
     act(() => vi.advanceTimersByTime(1500))
     expect(container.querySelector('.customer-entering')).toBeInTheDocument()
     expect(input).toHaveValue('')

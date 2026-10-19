@@ -3209,9 +3209,11 @@ button {
 .customer-shopping .potion-counter {
   transition: opacity 0.3s;
 }
-.customer-leaving .potion-customer,
-.customer-leaving .potion-counter {
+.customer-leaving .potion-customer {
   animation: potion-walk-out 1.4s ease-in both;
+}
+.customer-leaving .potion-counter {
+  visibility: hidden;
 }
 @keyframes potion-walk-in {
   from {
@@ -3299,6 +3301,8 @@ button {
   position: relative;
   min-height: 0;
   flex: 1;
+  overflow: hidden;
+  contain: size layout;
 }
 .potion-pack-group {
   display: flex;
@@ -3429,6 +3433,7 @@ button {
   min-height: 500px;
   padding: 10px clamp(14px, 3vw, 48px) 14px;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 44px 78px minmax(0, 1fr);
   gap: 8px;
 }
@@ -3468,6 +3473,8 @@ button {
 }
 .potion-page .potion-shop {
   min-height: 0;
+  min-width: 0;
+  contain: size layout;
   height: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
