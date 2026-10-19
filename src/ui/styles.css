@@ -3056,10 +3056,24 @@ button {
 }
 .potion-pack {
   position: relative;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
   width: 86px;
   height: 94px;
   background: #ffdf9c16;
   border-radius: 12px;
+}
+.potion-pack.is-moving {
+  cursor: grabbing;
+  filter: drop-shadow(0 8px 8px #130a1a99);
+}
+.potion-pack:focus-visible {
+  outline: 2px solid #ffe4a2;
+  outline-offset: 3px;
+}
+.potion-pack img {
+  pointer-events: none;
 }
 .potion-pack img {
   width: 100%;

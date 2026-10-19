@@ -106,8 +106,8 @@ export function PotionGamePage({
         </p>
         <h1>Luisas Zaubertrankladen</h1>
         <p>
-          Wie viele Zaubertränke kauft dein Kunde? Gib die Menge in die Kasse
-          ein.
+          Zähle die Zaubertränke und gib die Menge ein. Zum Sortieren kannst du
+          die Tränke verschieben.
         </p>
       </section>
       <div className="potion-layout">
@@ -127,7 +127,7 @@ export function PotionGamePage({
           <div className="potion-counter" aria-hidden={phase !== 'shopping'}>
             <h2>Der Einkaufskorb</h2>
             <FittedBasket>
-              <PurchasePacks packs={purchase.packs} />
+              <PurchasePacks key={round} packs={purchase.packs} />
             </FittedBasket>
           </div>
         </section>
@@ -251,8 +251,113 @@ export function PotionGamePage({
 }
 
 function Pack({ value }: { value: number }) {
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [moving, setMoving] = useState(false)
+  const drag = useRef<{
+    id: number
+    x: number
+    y: number
+    origin: { x: number; y: number }
+    scale: number
+    minX: number
+    maxX: number
+    minY: number
+    maxY: number
+  } | null>(null)
+  const clamp = (value: number, min: number, max: number) =>
+    Math.max(min, Math.min(max, value))
   return (
-    <div className={`potion-pack pack-${value}`}>
+    <div
+      className={`potion-pack pack-${value}${moving ? ' is-moving' : ''}`}
+      role="button"
+      tabIndex={0}
+      aria-label={`${value} ${value === 1 ? 'Zaubertrank' : 'Zaubertränke'} verschieben`}
+      style={{
+        translate: `${position.x}px ${position.y}px`,
+        zIndex: moving ? 3 : position.x || position.y ? 2 : undefined,
+      }}
+      onDragStart={(event) => event.preventDefault()}
+      onPointerDown={(event) => {
+        if (
+          event.button !== 0 ||
+          !event.currentTarget.closest('.customer-shopping')
+        )
+          return
+        const frame = event.currentTarget
+          .closest('.potion-basket-viewport')
+          ?.getBoundingClientRect()
+        if (!frame) return
+        const box = event.currentTarget.getBoundingClientRect()
+        const scale = box.width / event.currentTarget.offsetWidth || 1
+        drag.current = {
+          id: event.pointerId,
+          x: event.clientX,
+          y: event.clientY,
+          origin: position,
+          scale,
+          minX: frame.left - box.left,
+          maxX: frame.right - box.right,
+          minY: frame.top - box.top,
+          maxY: frame.bottom - box.bottom,
+        }
+        event.currentTarget.setPointerCapture(event.pointerId)
+        event.preventDefault()
+        setMoving(true)
+      }}
+      onPointerMove={(event) => {
+        const start = drag.current
+        if (!start || start.id !== event.pointerId) return
+        setPosition({
+          x:
+            start.origin.x +
+            clamp(event.clientX - start.x, start.minX, start.maxX) /
+              start.scale,
+          y:
+            start.origin.y +
+            clamp(event.clientY - start.y, start.minY, start.maxY) /
+              start.scale,
+        })
+      }}
+      onPointerUp={() => {
+        drag.current = null
+        setMoving(false)
+      }}
+      onPointerCancel={() => {
+        drag.current = null
+        setMoving(false)
+      }}
+      onLostPointerCapture={() => {
+        drag.current = null
+        setMoving(false)
+      }}
+      onKeyDown={(event) => {
+        const direction: Record<string, [number, number]> = {
+          ArrowLeft: [-20, 0],
+          ArrowRight: [20, 0],
+          ArrowUp: [0, -20],
+          ArrowDown: [0, 20],
+        }
+        const delta = direction[event.key]
+        if (!delta || !event.currentTarget.closest('.customer-shopping')) return
+        event.preventDefault()
+        const frame = event.currentTarget
+          .closest('.potion-basket-viewport')
+          ?.getBoundingClientRect()
+        if (!frame) return
+        const box = event.currentTarget.getBoundingClientRect()
+        const scale = box.width / event.currentTarget.offsetWidth || 1
+        setPosition((current) => ({
+          x:
+            current.x +
+            clamp(delta[0], frame.left - box.left, frame.right - box.right) /
+              scale,
+          y:
+            current.y +
+            clamp(delta[1], frame.top - box.top, frame.bottom - box.bottom) /
+              scale,
+        }))
+      }}
+    >
       <PotionQuantity value={value} />
       <span>{value}</span>
     </div>
