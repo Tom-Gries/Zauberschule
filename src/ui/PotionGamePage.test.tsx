@@ -60,7 +60,7 @@ describe('potion shop customer', () => {
     expect(container.querySelector('.customer-entering')).toBeInTheDocument()
     expect(input).toHaveValue('')
     expect(addCoins).toHaveBeenCalledTimes(1)
-    expect(screen.getByText('KAUF 2')).toBeInTheDocument()
+    expect(screen.queryByText(/KAUF \d+/)).not.toBeInTheDocument()
     expect(
       screen.getByRole('img', { name: 'Hexe Alma kauft Zaubertränke' }),
     ).toHaveAttribute('src', '/images/potion-customer-witch.png')

@@ -2981,20 +2981,6 @@ button {
 .potion-heading .eyebrow {
   justify-content: center;
 }
-.potion-progress {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-}
-.potion-progress span {
-  width: 22px;
-  height: 6px;
-  border-radius: 8px;
-  background: #65506e;
-}
-.potion-progress .filled {
-  background: var(--gold);
-}
 .potion-layout {
   max-width: 1380px;
   margin: auto;
@@ -3040,7 +3026,11 @@ button {
 .potion-counter {
   margin: 0 20px 20px;
   padding: 15px;
-  min-height: 270px;
+  height: 480px;
+  min-height: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
   border: 8px solid #9a613a;
   border-top-color: #d19960;
   border-radius: 22px 22px 45px 45px;
@@ -3050,6 +3040,7 @@ button {
     inset 0 4px 12px #24132277;
 }
 .potion-counter h2 {
+  flex-shrink: 0;
   font-size: 16px;
   margin: 0 0 12px;
   text-align: center;
@@ -3254,7 +3245,7 @@ button {
     width: 140px;
   }
   .potion-counter {
-    min-height: 200px;
+    height: 380px;
     margin: 0 10px 10px;
   }
   .potion-register {
@@ -3295,9 +3286,19 @@ button {
 .potion-packs {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  transform-origin: top center;
   align-items: flex-start;
   max-height: none;
   flex-wrap: wrap;
+}
+.potion-basket-viewport {
+  position: relative;
+  min-height: 0;
+  flex: 1;
 }
 .potion-pack-group {
   display: flex;

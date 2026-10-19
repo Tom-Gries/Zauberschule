@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react'
 import { ArrowLeft, Delete, Sparkles } from 'lucide-react'
 import { Link } from 'react-router'
 import {
@@ -92,10 +98,6 @@ export function PotionGamePage({
           <ArrowLeft size={18} />
           <span>Spielauswahl</span>
         </Link>
-        <div className="round-chip">
-          KAUF {round}
-          <span>✦</span>
-        </div>
         <CoinPill amount={coins} />
       </header>
       <section className="potion-heading">
@@ -107,19 +109,6 @@ export function PotionGamePage({
           Wie viele Zaubertränke kauft dein Kunde? Gib die Menge in die Kasse
           ein.
         </p>
-        <div
-          className="potion-progress"
-          aria-label={`${((round - 1) % 10) + 1} von 10 Käufen in dieser Stufe`}
-        >
-          {Array.from({ length: 10 }, (_, i) => (
-            <span
-              key={i}
-              className={
-                i < ((round - 1) % 10) + (solved ? 1 : 0) ? 'filled' : ''
-              }
-            />
-          ))}
-        </div>
       </section>
       <div className="potion-layout">
         <section
@@ -137,7 +126,7 @@ export function PotionGamePage({
           </div>
           <div className="potion-counter">
             <h2>Der Einkaufskorb</h2>
-            <div className="potion-packs">
+            <FittedBasket>
               {potionValues
                 .filter((value) => purchase.packs.includes(value))
                 .map((value) => (
@@ -155,7 +144,7 @@ export function PotionGamePage({
                       ))}
                   </div>
                 ))}
-            </div>
+            </FittedBasket>
           </div>
         </section>
         <section className="potion-register panel" aria-label="Kasse">
@@ -271,6 +260,40 @@ export function PotionGamePage({
         </p>
       </section>
     </main>
+  )
+}
+
+function FittedBasket({ children }: { children: ReactNode }) {
+  const viewportRef = useRef<HTMLDivElement>(null)
+  const contentsRef = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(1)
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current
+    const contents = contentsRef.current
+    if (!viewport || !contents || typeof ResizeObserver === 'undefined') return
+    const fit = () => {
+      const next = Math.min(
+        1,
+        viewport.clientHeight / Math.max(1, contents.scrollHeight),
+      )
+      setScale((current) => (current === next ? current : next))
+    }
+    fit()
+    const observer = new ResizeObserver(fit)
+    observer.observe(viewport)
+    observer.observe(contents)
+    return () => observer.disconnect()
+  }, [])
+  return (
+    <div className="potion-basket-viewport" ref={viewportRef}>
+      <div
+        className="potion-packs"
+        ref={contentsRef}
+        style={{ transform: `translateX(-50%) scale(${scale})` }}
+      >
+        {children}
+      </div>
+    </div>
   )
 }
 
