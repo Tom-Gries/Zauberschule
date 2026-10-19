@@ -3304,6 +3304,22 @@ button {
   overflow: hidden;
   contain: size layout;
 }
+.potion-balanced-packs {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  padding: 8px;
+}
+.potion-balanced-packs .potion-pack {
+  width: 100%;
+  flex: none;
+}
+.potion-balanced-singles {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
 .potion-pack-group {
   display: flex;
   flex-wrap: wrap;

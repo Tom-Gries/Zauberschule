@@ -127,23 +127,7 @@ export function PotionGamePage({
           <div className="potion-counter" aria-hidden={phase !== 'shopping'}>
             <h2>Der Einkaufskorb</h2>
             <FittedBasket>
-              {potionValues
-                .filter((value) => purchase.packs.includes(value))
-                .map((value) => (
-                  <div
-                    className={`potion-pack-group group-${value}`}
-                    key={value}
-                  >
-                    {purchase.packs
-                      .filter((pack) => pack === value)
-                      .map((_, i) => (
-                        <div className={`potion-pack pack-${value}`} key={i}>
-                          <PotionQuantity value={value} />
-                          <span>{value}</span>
-                        </div>
-                      ))}
-                  </div>
-                ))}
+              <PurchasePacks packs={purchase.packs} />
             </FittedBasket>
           </div>
         </section>
@@ -263,6 +247,60 @@ export function PotionGamePage({
         </section>
       </details>
     </main>
+  )
+}
+
+function Pack({ value }: { value: number }) {
+  return (
+    <div className={`potion-pack pack-${value}`}>
+      <PotionQuantity value={value} />
+      <span>{value}</span>
+    </div>
+  )
+}
+
+function PurchasePacks({ packs }: { packs: number[] }) {
+  const fives = packs.filter((value) => value === 5)
+  const larger = packs.filter((value) => value > 5)
+  if (fives.length >= 2) {
+    const split = Math.ceil(fives.length / 2)
+    const row = [...fives.slice(0, split), ...larger, ...fives.slice(split)]
+    return (
+      <div
+        className="potion-balanced-packs"
+        style={{
+          gridTemplateColumns: `repeat(${Math.min(5, row.length)}, minmax(0, 1fr))`,
+        }}
+      >
+        {row.map((value, i) => (
+          <Pack value={value} key={i} />
+        ))}
+        {packs.includes(1) && (
+          <div className="potion-pack-group group-1 potion-balanced-singles">
+            {packs
+              .filter((value) => value === 1)
+              .map((value, i) => (
+                <Pack value={value} key={i} />
+              ))}
+          </div>
+        )}
+      </div>
+    )
+  }
+  return (
+    <>
+      {potionValues
+        .filter((value) => packs.includes(value))
+        .map((value) => (
+          <div className={`potion-pack-group group-${value}`} key={value}>
+            {packs
+              .filter((pack) => pack === value)
+              .map((_, i) => (
+                <Pack value={value} key={i} />
+              ))}
+          </div>
+        ))}
+    </>
   )
 }
 

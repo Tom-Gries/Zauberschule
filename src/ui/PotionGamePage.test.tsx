@@ -2,10 +2,11 @@ import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { PotionGamePage } from './PotionGamePage'
+import { createPurchase } from '../game/potions'
 
 vi.mock('../game/potions', async (importOriginal) => ({
   ...(await importOriginal<typeof import('../game/potions')>()),
-  createPurchase: () => ({ total: 6, packs: [5, 1] }),
+  createPurchase: vi.fn(() => ({ total: 6, packs: [5, 1] })),
 }))
 
 afterEach(() => {
@@ -15,6 +16,26 @@ afterEach(() => {
 })
 
 describe('potion shop customer', () => {
+  it('uses five columns for four fives alongside a twenty bundle', () => {
+    vi.mocked(createPurchase).mockReturnValueOnce({
+      total: 40,
+      packs: [20, 5, 5, 5, 5],
+    })
+    const { container } = render(
+      <MemoryRouter>
+        <PotionGamePage coins={0} addCoins={vi.fn()} />
+      </MemoryRouter>,
+    )
+    const arrangement = container.querySelector('.potion-balanced-packs')
+    expect(arrangement).toHaveStyle({
+      gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+    })
+    expect(
+      Array.from(arrangement!.children).map(
+        (element) => element.querySelector('span')?.textContent,
+      ),
+    ).toEqual(['5', '5', '20', '5', '5'])
+  })
   it('waits for the right quantity, rewards once, leaves and brings in the next customer', () => {
     vi.useFakeTimers()
     const addCoins = vi.fn()
