@@ -3428,8 +3428,8 @@ button {
   height: 100svh;
   min-height: 500px;
   padding: 10px clamp(14px, 3vw, 48px) 14px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 44px 78px minmax(0, 1fr);
   gap: 8px;
 }
 .potion-page > .topbar {
@@ -3441,6 +3441,8 @@ button {
 .potion-page .potion-heading {
   margin: 0 auto;
   padding: 0 110px;
+  height: 78px;
+  overflow: hidden;
 }
 .potion-page .potion-heading h1 {
   font-size: clamp(22px, 2.6vw, 30px);
@@ -3454,20 +3456,26 @@ button {
   font-size: 10px;
 }
 .potion-page .potion-layout {
-  flex: 1;
   min-height: 0;
+  height: 100%;
+  contain: size layout;
   width: 100%;
   margin: 0 auto;
   grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-rows: minmax(0, 1fr);
   align-items: stretch;
   gap: 18px;
 }
 .potion-page .potion-shop {
   min-height: 0;
   height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 38% minmax(0, 1fr);
+  justify-content: stretch;
 }
 .potion-page .potion-customer {
-  height: 38%;
+  height: 100%;
   min-height: 0;
   padding: 8px;
 }
@@ -3578,12 +3586,12 @@ button {
 }
 @media (max-width: 700px) and (orientation: portrait) {
   .potion-page {
-    height: auto;
-    min-height: 100svh;
+    height: 1050px;
+    min-height: max(1050px, 100svh);
     overflow: visible;
   }
   .potion-page .potion-heading {
-    padding: 0 0 35px;
+    padding: 0;
   }
   .potion-help {
     top: 143px;
@@ -3591,10 +3599,10 @@ button {
   }
   .potion-page .potion-layout {
     grid-template-columns: minmax(0, 1fr);
-    flex: none;
+    grid-template-rows: minmax(0, 1fr) 440px;
   }
   .potion-page .potion-shop {
-    height: 430px;
+    height: 100%;
   }
   .potion-page .potion-register {
     height: 440px;
